@@ -37,6 +37,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_enable' => 'boolean',
+        'is_super' => 'boolean',
     ];
 
     public function setPasswordAttribute($value)

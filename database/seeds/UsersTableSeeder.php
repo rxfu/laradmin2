@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'admin',
             'password' => '123456',
             'name' => '超级管理员',
+            'is_super' => true,
         ]);
     }
 }

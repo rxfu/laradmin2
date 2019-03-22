@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable()->comment('电子邮箱');
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_enable')->default(true)->comment('是否启用，0-禁用，1-启用');
+            $table->boolean('is_super')->default(false)->comment('是否超级管理员，0-否，1-是');
             $table->rememberToken();
             $table->timestamps();
         });
