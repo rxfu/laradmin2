@@ -14,4 +14,8 @@ class Department extends Model
     protected $casts = [
         'is_enable' => 'boolean',
     ];
+
+    public function users() {
+    	return $this->belongsToMany('App\Entities\User');
+    }
 }
