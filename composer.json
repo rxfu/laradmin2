@@ -22,6 +22,7 @@
         "maatwebsite/excel": "^3.1",
         "makeusabrew/bootbox": "^5.0",
         "mews/captcha": "^2.2",
+        "nnnick/chartjs": "^2.8",
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.1",
         "twbs/bootstrap": "^4.3"
