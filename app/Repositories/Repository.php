@@ -31,46 +31,39 @@ class Repository {
 	}
 
 	public function getAll() {
-		return $this->object->get();
+		return $this->object->all();
 	}
 
 	public function store($attributes) {
-		if (is_array($attributes)) {
-			$this->object->Fill($attributes);
+		$attributes = is_array($attributes) ? $attributes : [$attributes];
 
-			$this->object->saveOrFail();
-
-			return true;
-		}
-
-		return false;
+		return $this->object->create($attributes);
 	}
 
 	public function update($id, $attributes) {
-		$this->object = $this->get($id);
+		$object = $this->get($id);
+		$attributes = is_array($attributes) ? $attributes : [$attributes];
 
-		if (is_array($attributes)) {
-			$this->object->fill($attributes);
-
-			$this->object->saveOrFail();
-
-			return true;
-		}
-
-		return false;
+		return $object->update($attributes);;
 	}
 
 	public function delete($id, $force = false) {
-		$this->object = $this->get($id);
+		$object = $this->get($id);
 
-		return $force ? $this->object->forceDelete() : $this->object->delete();
+		return $force ? $object->forceDelete() : $object->delete();
 	}
 
 	public function deleteAll($ids, $force = false) {
-		if (is_array($ids)) {
-			foreach ($ids as $id) {
-				$this->delete($id, $force);
-			}
+		$ids = is_array($ids) ? $ids : [$ids];
+
+		foreach ($ids as $id) {
+			$this->delete($id, $force);
 		}
+	}
+
+	public function destroy($ids) {
+		$ids = is_array($ids) ? $ids : [$ids];
+
+		return $this->object->destroy($ids);
 	}
 }

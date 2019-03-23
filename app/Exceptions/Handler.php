@@ -34,6 +34,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if ($exception instanceof GeneralException) {
+            $exception->report($exception);
+        }
+        
         parent::report($exception);
     }
 
@@ -46,6 +50,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (config('app.debug') === false) {
+            if ($exception instanceof GeneralException) {
+                return $exception->render($request, $exception);
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }
