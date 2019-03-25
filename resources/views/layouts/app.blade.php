@@ -12,6 +12,8 @@
 
     <!-- Content wrapper -->
     <div class="content-wrapper">
+        @include('shared.alert')
+        
     	<!-- Content header -->
     	<section class="content-header">
     		<div class="container-fluid">

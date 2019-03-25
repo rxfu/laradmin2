@@ -39,7 +39,7 @@
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- Custom scripts ==>
+    <!-- Custom scripts -->
     @stack('scripts')
 </body>
 </html>

@@ -22,7 +22,12 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', 'LoginController@logout')->name('logout');
 
     Route::name('home.')->group(function () {
-        Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+        Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
+    });
+
+    Route::prefix('password')->name('password.')->group(function() {
+    	Route::get('change', 'PasswordController@password')->name('change');
+    	Route::put('change', 'PasswordController@change');
     });
 /*
     Route::name('user.')->group(function () {

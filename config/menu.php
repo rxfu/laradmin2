@@ -15,8 +15,15 @@ return [
         'home' => [
             'dashboard' => [
                 'title' => '使用说明',
-                'icon' => 'dashboard',
+                'icon' => 'tachometer-alt',
                 'url' => '/',
+            ],
+        ],
+        'password' => [
+            'change' => [
+                'title' => '修改密码',
+                'icon' => 'shield-alt',
+                'route' => 'password.change',
             ],
         ],
     ],

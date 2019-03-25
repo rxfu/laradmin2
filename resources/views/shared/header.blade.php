@@ -19,14 +19,14 @@
                         #
                     @endisset
                 @endisset
-                "class="nav-link">{{ $item['title'] ?? '无标题' }}</a>
+                " class="nav-link">{{ $item['title'] ?? '无标题' }}</a>
 			</li>
 		@endforeach
 	</ul>
 
 	<!-- Right navbar links -->
 	<ul class="navbar-nav ml-auto">
-		<li class="nav-item d-done d-sm-inline-block"">
+		<li class="nav-item d-done d-sm-inline-block">
 			<a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 				<i class="nav-icon fa fa-sign-out"></i>
 				登出系统

@@ -13,7 +13,7 @@ class GeneralException extends Exception
      */
     public function report()
     {
-    	parent::report($this);
+        //
     }
 
     /**
@@ -24,6 +24,6 @@ class GeneralException extends Exception
      */
     public function render($request)
     {
-        return back()->flash('error', $this->getMessage());
+        return back()->withErrors($this->getMessage());
     }
 }
