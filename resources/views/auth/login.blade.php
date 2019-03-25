@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', '登录')
+
 @section('body-class', 'login-page')
 
 @section('page')
@@ -15,7 +17,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">登录{{ $title ?? '' }}</p>
 
-            <form action="{{ route('admin.login') }}" method="post">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="text" id="username" name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="用户名" required>
@@ -60,7 +62,7 @@
 
 @push('styles')
 <!-- iCheck -->
-<link rel="stylesheet" href="{{ asset('plugins/iCheck/square/blue.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/iCheck/square/blue.css') }}">
 <style>
     .login-logo {
         font-size: 28px;
@@ -70,7 +72,7 @@
 
 @push('scripts')
 <!-- iCheck -->
-<script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
+<script src="{{ asset('vendor/iCheck/icheck.min.js') }}"></script>
 <script>
 $(function () {
     $('input').iCheck({

@@ -13,7 +13,7 @@ class GeneralException extends Exception
      */
     public function report()
     {
-    	Log::debug($this->getMessage());
+    	parent::report($this);
     }
 
     /**

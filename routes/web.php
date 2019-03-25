@@ -12,9 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home.dashboard');
 });
 
-Auth::routes();
+Route::get('login', 'LoginController@showLoginForm')->name('login');
+Route::post('login', 'LoginController@login');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')->group(function () {
+    Route::post('logout', 'LoginController@logout')->name('logout');
+
+    Route::name('home.')->group(function () {
+        Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+    });
+/*
+    Route::name('user.')->group(function () {
+        Route::get('password', 'UserController@password')->name('password');
+        Route::put('change-password', 'UserController@changePassword')->name('change');
+    });*/
+});

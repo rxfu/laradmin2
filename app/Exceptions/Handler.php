@@ -34,10 +34,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        if ($exception instanceof GeneralException) {
-            $exception->report($exception);
-        }
-        
         parent::report($exception);
     }
 
