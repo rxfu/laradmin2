@@ -7,7 +7,7 @@
 				<i class="fa fa-bars"></i>
 			</a>
 		</li>
-		@foreach (config('menu.navigation.' . $guard) as $item)
+		@foreach (config('menu.navigation') as $item)
 			<li class="nav-item d-done d-sm-inine-block">
 				<a href="
                 @isset($item['route'])
@@ -27,12 +27,12 @@
 	<!-- Right navbar links -->
 	<ul class="navbar-nav ml-auto">
 		<li class="nav-item d-done d-sm-inline-block"">
-			<a href="{{ route($guard . '.logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+			<a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 				<i class="nav-icon fa fa-sign-out"></i>
 				登出系统
 			</a>
 
-			<form id="logout-form" action="{{ route($guard . '.logout') }}" method="post" style="display: none">
+			<form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
 				@csrf
 			</form>
 		</li>

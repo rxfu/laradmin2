@@ -11,10 +11,10 @@
       	<!-- Sidebar user panel (optional) -->
       	<div class="user-panel mt-3 pb-3 mb-3 d-flex">
           	<div class="image">
-            	<img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="用户头像">
+            	<img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="{{ Auth::user()->name }}">
           	</div>
           	<div class="info">
-            	<a href="#" class="d-block">{{ $name }}</a>
+            	<a href="#" class="d-block">{{ Auth::user()->name }}</a>
           	</div>
         </div>
 
@@ -22,7 +22,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           	    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                @foreach (config('menu.sidebar.' . $guard) as $items)
+                @foreach (config('menu.sidebar') as $items)
                     @foreach ($items as $item)
                         @if (is_array($item))
                             @isset($item['children'])
@@ -39,11 +39,11 @@
                                     @endisset
                                     " class="nav-link">
                                         @isset ($item['icon'])
-                                            <i class="nav-icon fa fa-{{ $item['icon'] }}"></i>
+                                            <i class="nav-icon fas fa-{{ $item['icon'] }}"></i>
                                         @endisset
                                         <p>
                                             {{ $item['title'] ?? '无标题' }}
-                                            <i class="right fa fa-angle-left"></i>
+                                            <i class="right fas fa-angle-left"></i>
                                         </p>
                                     </a>
                                     <ul class="nav nav-treeview">
@@ -61,9 +61,9 @@
                                                 @endisset
                                                 " class="nav-link">
                                                     @isset ($subitem['icon'])                                          
-                                                        <i class="nav-icon fa fa-{{ $subitem['icon'] }}"></i>
+                                                        <i class="nav-icon fas fa-{{ $subitem['icon'] }}"></i>
                                                     @else
-                                                        <i class="nav-icon fa fa-circle-o"></i>
+                                                        <i class="nav-icon far fa-circle"></i>
                                                     @endisset
                                                     <p>{{ $subitem['title'] ?? '无标题' }}</p>
                                                 </a>
@@ -85,7 +85,7 @@
                                     @endisset
                                     " class="nav-link">
                                         @isset ($item['icon'])
-                                            <i class="nav-icon fa fa-{{ $item['icon'] }}"></i>
+                                            <i class="nav-icon fas fa-{{ $item['icon'] }}"></i>
                                         @endisset
                                         <p>{{ $item['title'] ?? '无标题' }}</p>
                                     </a>
