@@ -27,9 +27,7 @@ class PasswordController extends Controller
     
             $this->service->changePassword($old, $password, $confirmed);
 
-            $request->session()->flash('success', '修改密码成功');
+            return back()->withSuccess('修改密码成功');
         }
-
-        return back();
     }
 }

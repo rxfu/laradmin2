@@ -23,7 +23,7 @@ class UserService extends Service
         if (Auth::attempt($credentials)) {
             if ($newPassword === $confirmedPassword) {
                 try {
-                    $this->repository->update('Auth::user()->id', ['password' => $newPassword]);
+                    $this->repository->update(Auth::user()->id, ['password' => $newPassword]);
                 } catch (Exception $e) {
                     throw new GeneralException('密码修改失败');
                 }

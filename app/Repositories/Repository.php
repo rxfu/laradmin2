@@ -2,6 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\GeneralException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Str;
+
 class Repository
 {
     protected $object;
@@ -23,22 +27,20 @@ class Repository
 
     public function getModel()
     {
-        return Str::singular($this->getTable());
+        return Str::ucfirst(Str::singular($this->getTable()));
     }
 
     public function get($id, $trashed = false)
     {
         try {
             if ($trashed) {
-                $object = $this->object->withTrashed()->findOrFail($id);
+                return $this->object->withTrashed()->findOrFail($id);
             }
-    
-            $object = $this->object->findOrFail($id);
+        
+            return $this->object->findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            throw new GeneralException($this->getModel() . ': ' . $id . '未找到');
+            throw new GeneralException('[' . $this->getModel() . ': ' . $id . '] 对象未找到');
         }
-
-        return $object;
     }
 
     public function getAll()
@@ -55,14 +57,10 @@ class Repository
 
     public function update($id, $attributes)
     {
-        try {
-            $object = $this->get($id);
-            $attributes = is_array($attributes) ? $attributes : [$attributes];
+        $object = $this->get($id);
+        $attributes = is_array($attributes) ? $attributes : [$attributes];
 
-            $this->object->update($attributes);
-        } catch (ModelNotFoundException $e) {
-            throw new GeneralException('数据更新失败');
-        }
+        $object->update($attributes);
     }
 
     public function delete($id, $force = false)
