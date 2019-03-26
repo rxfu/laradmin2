@@ -22,7 +22,9 @@
                 <div class="input-group mb-3">
                     <input type="text" id="username" name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="用户名" required>
                     <div class="input-group-append">
-                        <span class="fas fa-user input-group-text"></span>
+                        <span class="input-group-text">
+                            <i class="fas fa-user"></i>
+                        </span>
                     </div>
                     @if ($errors->has('username'))
                         <div class="invalid-feedback" role="alert">
@@ -33,7 +35,9 @@
                 <div class="input-group mb-3">
                     <input type="password" id="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="密码" required>
                     <div class="input-group-append">
-                        <span class="fas fa-lock input-group-text"></span>
+                        <span class="input-group-text">
+                            <i class="fas fa-lock"></i>
+                        </span>
                     </div>
                     @if ($errors->has('password'))
                         <div class="invalid-feedback" role="alert">

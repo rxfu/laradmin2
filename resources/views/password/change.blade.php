@@ -49,11 +49,13 @@
 				</div>
 
 				<div class="card-footer">
-					<div class="col-sm-4 offset-sm-4">
-				        <button type="submit" class="btn btn-primary">
-				            <i class="icon fas fa-save"></i> 确认修改
-				        </button>
-				    </div>
+					<div class="row justify-content-sm-center">
+						<div class="col-sm-auto">
+					        <button type="submit" class="btn btn-primary">
+					            <i class="icon fas fa-save"></i> 确认修改
+					        </button>
+					    </div>
+					</div>
 				</div>
 			</form>
 		</div>

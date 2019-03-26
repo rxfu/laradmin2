@@ -8,23 +8,28 @@ use Illuminate\Http\Request;
 
 class PasswordController extends Controller
 {
-	private $service;
+    private $service;
 
-	public function __construct(UserService $userService) {
-		$this->service = $userService;
-	}
-
-    public function password() {
-    	return view('password.change');
+    public function __construct(UserService $userService)
+    {
+        $this->service = $userService;
     }
 
-    public function change(ChangePasswordRequest $request) {
-    	if ($request->isMethod('put')) {
-			list($old, $password, $confirmed) = array_values($request->only('old_password', 'password', 'password_confirmation'));
-	
-			$this->service->changePassword($old, $password, $confirmed);
-		}
+    public function password()
+    {
+        return view('password.change');
+    }
 
-		return back();
+    public function change(ChangePasswordRequest $request)
+    {
+        if ($request->isMethod('put')) {
+            list($old, $password, $confirmed) = array_values($request->only('old_password', 'password', 'password_confirmation'));
+    
+            $this->service->changePassword($old, $password, $confirmed);
+
+            $request->session()->flash('success', '修改密码成功');
+        }
+
+        return back();
     }
 }

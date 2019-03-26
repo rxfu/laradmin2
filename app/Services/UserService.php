@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserService extends Service
 {
-
     public function __construct(UserRepository $users)
     {
         $this->repository = $users;
@@ -23,7 +22,11 @@ class UserService extends Service
 
         if (Auth::attempt($credentials)) {
             if ($newPassword === $confirmedPassword) {
-                $this->repository->update(Auth::user()->id, ['password' => $newPassword]);
+                try {
+                    $this->repository->update('Auth::user()->id', ['password' => $newPassword]);
+                } catch (Exception $e) {
+                    throw new GeneralException('密码修改失败');
+                }
             } else {
                 throw new GeneralException('确认密码与新密码不一致，请重新输入');
             }

@@ -24,6 +24,6 @@ class GeneralException extends Exception
      */
     public function render($request)
     {
-        return back()->withErrors($this->getMessage());
+        return back()->withError($this->getMessage())->withInput();
     }
 }
