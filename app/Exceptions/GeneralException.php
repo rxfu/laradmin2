@@ -2,6 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Entities\Log;
+use App\Repositories\LogRepository;
+use App\Services\LogService;
 use Exception;
 
 class GeneralException extends Exception
@@ -13,7 +16,9 @@ class GeneralException extends Exception
      */
     public function report()
     {
-        //
+        $log = new LogService(new LogRepository(new Log));
+
+        $log->write('ERROR', 'EXCEPTION', $this->getMessage());
     }
 
     /**

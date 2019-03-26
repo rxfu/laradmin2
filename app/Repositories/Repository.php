@@ -39,7 +39,7 @@ class Repository
         
             return $this->object->findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            throw new GeneralException('[' . $this->getModel() . ': ' . $id . '] 对象未找到');
+            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象不存在');
         }
     }
 
@@ -51,8 +51,12 @@ class Repository
     public function store($attributes)
     {
         $attributes = is_array($attributes) ? $attributes : [$attributes];
-
-        return $this->object->create($attributes);
+        $object = $this->object->create($attributes);;
+        if (!$object) {
+            throw new GeneralException('{' . $this->getModel() . '} 对象创建失败');
+        } else {
+            return $object;
+        }
     }
 
     public function update($id, $attributes)
@@ -60,14 +64,19 @@ class Repository
         $object = $this->get($id);
         $attributes = is_array($attributes) ? $attributes : [$attributes];
 
-        $object->update($attributes);
+        if (false === $object->update($attributes)) {
+            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象更新失败');
+        }
     }
 
     public function delete($id, $force = false)
     {
         $object = $this->get($id);
+        $success =  $force ? $object->forceDelete() : $object->delete();
 
-        return $force ? $object->forceDelete() : $object->delete();
+        if (is_null($success) || (false === $success)) {
+            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象删除失败');
+        }
     }
 
     public function deleteAll($ids, $force = false)
@@ -77,12 +86,5 @@ class Repository
         foreach ($ids as $id) {
             $this->delete($id, $force);
         }
-    }
-
-    public function destroy($ids)
-    {
-        $ids = is_array($ids) ? $ids : [$ids];
-
-        return $this->object->destroy($ids);
     }
 }

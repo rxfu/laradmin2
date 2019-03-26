@@ -29,6 +29,10 @@ Route::middleware('auth')->group(function () {
     	Route::get('change', 'PasswordController@password')->name('change');
     	Route::put('change', 'PasswordController@change');
     });
+
+    Route::prefix('log')->name('log.')->group(function() {
+        Route::get('list', 'LogController@list')->name('list');
+    });
 /*
     Route::name('user.')->group(function () {
         Route::get('password', 'UserController@password')->name('password');

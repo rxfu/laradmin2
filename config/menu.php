@@ -19,6 +19,13 @@ return [
                 'url' => '/',
             ],
         ],
+        'log' => [
+            'list' => [
+                'title' => '日志管理',
+                'icon' => 'log',
+                'route' => 'log.list',
+            ],
+        ],
         'password' => [
             'change' => [
                 'title' => '修改密码',
