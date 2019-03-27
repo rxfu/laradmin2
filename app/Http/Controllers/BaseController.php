@@ -6,15 +6,25 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-	protected $service;
+    protected $service;
 
-	protected $model;
+    protected $model;
 
-	public function __construct(Service $service) {
-		$this->service = $service;
-	}
+    protected $subtitle;
 
-    public function list() {
-    	return view('partials.list', ['model' => $this->model]);
+    public function __construct(Service $service)
+    {
+        $this->service = $service;
+    }
+
+    public function list()
+    {
+        $items = $this->service->getAll();
+
+        return view('pages.list', [
+            'subtitle' => $this->subtitle,
+            'model' => $this->model,
+            'items' => $items,
+        ]);
     }
 }

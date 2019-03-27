@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class LogController extends BaseController
 {
-    public function __construct(LogService $logService) {
-    	$this->service = $logService;
-    	$this->model = 'log';
+    public function __construct(LogService $logService)
+    {
+        $this->service = $logService;
+        $this->model = 'log';
+        $this->subtitle = '日志';
     }
 }

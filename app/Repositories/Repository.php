@@ -51,7 +51,8 @@ class Repository
     public function store($attributes)
     {
         $attributes = is_array($attributes) ? $attributes : [$attributes];
-        $object = $this->object->create($attributes);;
+        $object = $this->object->create($attributes);
+        ;
         if (!$object) {
             throw new GeneralException('{' . $this->getModel() . '} 对象创建失败');
         } else {

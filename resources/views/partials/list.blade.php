@@ -7,37 +7,41 @@
         @method('delete')
         @csrf
 		<div class="card-body">
-			<table id="itemtable" class="table table-bordered table-striped datatable">
+			<table id="itemsTable" class="table table-bordered table-striped datatable">
 				<thead>
 					<tr>
-						@foreach (array_column(config('module.' . $items->name), 'name') as $colname)
-							<th scope="col">{{ $colname }}</th>
-							<th scope="col">操作</th>
+						<th scope="col">
+                            <div class="form-check">
+                                <input type="checkbox" id="allItems" name="allItems" value="all">
+                            </div>
+                        </th>
+						<th scope="col">#</th>
+						@foreach (array_column(config('components.' . $model), 'field') as $field)
+							<th scope="col">{{ trans($model . '.' . $field) }}</th>
 						@endforeach
+						<th scope="col">操作</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($items as $item)
 						<tr>
-							@foreach (array_column(config('module.' . $items->name), 'field') as $field)
+							<td>
+                                <div class="form-check">
+                                    <input type="checkbox" name="items[]" value="{{ $item->id }}">
+                                </div>
+                            </td>
+							<td>{{ $item->id }}</td>
+							@foreach (array_column(config('components.' . $model), 'field') as $field)
 								<td>{{ $item->{$field} }}</td>
 							@endforeach
 	                        <td>
-	                            <a href="{{ route($items->name . '.edit', $item->id) }}" class="btn btn-info btn-flat btn-sm"
-	                                title="编辑">
+	                            <a href="#" class="btn btn-info btn-flat btn-sm" title="编辑">
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>
 						</tr>
 					@endforeach
 				</tbody>
-				<tfoot>
-					<tr>
-						@foreach (array_column(config('module.' . $model->name), 'field') as $colname)
-							<th>{{ $colname }}</th>
-						@endforeach
-					</tr>
-				</tfoot>
 			</table>
 		</div>
 

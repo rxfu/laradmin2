@@ -22,7 +22,7 @@ return [
         'log' => [
             'list' => [
                 'title' => '日志管理',
-                'icon' => 'log',
+                'icon' => 'book',
                 'route' => 'log.list',
             ],
         ],
