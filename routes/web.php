@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::prefix('log')->name('log.')->group(function() {
         Route::get('list', 'LogController@list')->name('list');
     });
+
+    foreach (['user'] as $prefix) {
+        Route::prefix($prefix)->name($prefix . '.')->group(function() use ($prefix) {
+            Route::get('list', Str::ucfirst($prefix) . 'Controller@list')->name('list');
+            Route::get('edit/{id}', Str::ucfirst($prefix) . 'Controller@edit')->name('edit');
+        });
+    }
 /*
     Route::name('user.')->group(function () {
         Route::get('password', 'UserController@password')->name('password');

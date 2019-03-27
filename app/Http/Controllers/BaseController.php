@@ -27,4 +27,10 @@ class BaseController extends Controller
             'items' => $items,
         ]);
     }
+
+    public function edit($id) {
+        $item = $this->service->get($id);
+
+        return view('pages.edit');
+    }
 }

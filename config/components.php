@@ -2,6 +2,7 @@
 
 return [
     'log' => [
+        'grid' => true,
         [
             'field' => 'user_id',
         ],
@@ -19,6 +20,18 @@ return [
         ],
         [
             'field' => 'created_at',
+        ],
+    ],
+    'user' => [
+        [
+            'field' => 'username',
+        ],
+        [
+            'field' => 'password',
+            'list' => false,
+        ],
+        [
+            'field' => 'name',
         ],
     ],
 ];

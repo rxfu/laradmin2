@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-	@include('partials.list')
+    @empty (config('components.' . $model . '.grid'))
+        @include('partials.list', ['components' => config('components.' . $model)])
+    @else
+        @include('partials.grid', ['components' => config('components.' . $model)])
+    @endempty
 @stop
 
 @push('styles')
@@ -30,9 +34,6 @@ $(function () {
         	"targets": 0
         }],
         "order": []
-    });
-    $('#allItems').change(function () {
-        $(':checkbox[name="items[]"]').prop('checked', $(this).is(':checked') ? true : false);
     });
 });
 </script>

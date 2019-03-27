@@ -16,8 +16,10 @@
                             </div>
                         </th>
 						<th scope="col">#</th>
-						@foreach (array_column(config('components.' . $model), 'field') as $field)
-							<th scope="col">{{ trans($model . '.' . $field) }}</th>
+						@foreach (array_column($components, 'field') as $field)
+							@if (!isset($components[$loop->index]['list']) || (true === $components[$loop->index]['list']))
+								<th scope="col">{{ trans($model . '.' . $field) }}</th>
+							@endif
 						@endforeach
 						<th scope="col">操作</th>
 					</tr>
@@ -31,11 +33,13 @@
                                 </div>
                             </td>
 							<td>{{ $item->id }}</td>
-							@foreach (array_column(config('components.' . $model), 'field') as $field)
-								<td>{{ $item->{$field} }}</td>
+							@foreach (array_column($components, 'field') as $field)
+								@if (!isset($components[$loop->index]['list']) || (true === $components[$loop->index]['list']))
+									<td>{{ $item->{$field} }}</td>
+								@endif
 							@endforeach
 	                        <td>
-	                            <a href="#" class="btn btn-info btn-flat btn-sm" title="编辑">
+	                            <a href="{{ route($model . '.edit', $item->id) }}" class="btn btn-info btn-flat btn-sm" title="编辑">
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>
@@ -46,9 +50,19 @@
 		</div>
 
 		<div class="card-footer">
-	        <button type="submit" class="btn btn-danger" onclick="return window.confirm('请问确定要删除这些记录吗？')">
-	            <i class="icon fa fa-trash"></i> 删除
+	        <button type="submit" class="btn btn-danger" onclick="return window.confirm('请问确定要删除这些{{ $subtitle }}吗？')">
+	            <i class="icon fa fa-trash"></i> 删除所选
 	        </button>
 		</div>
 	</form>
 </div>
+
+@push('scripts')
+<script>
+$(function() {
+    $('#allItems').change(function () {
+        $(':checkbox[name="items[]"]').prop('checked', $(this).is(':checked') ? true : false);
+    });
+})
+</script>
+@endpush

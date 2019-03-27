@@ -19,6 +19,13 @@ return [
                 'url' => '/',
             ],
         ],
+        'user' => [
+            'list' => [
+                'title' => '用户管理',
+                'icon' => 'users',
+                'route' => 'user.list',
+            ],
+        ],
         'log' => [
             'list' => [
                 'title' => '日志管理',
