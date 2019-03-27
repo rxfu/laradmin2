@@ -28,7 +28,8 @@ $(function () {
         "columnDefs": [{
         	"orderable": false,
         	"targets": 0
-        }]
+        }],
+        "order": []
     });
     $('#allItems').change(function () {
         $(':checkbox[name="items[]"]').prop('checked', $(this).is(':checked') ? true : false);
