@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    @empty (config('components.' . $model . '.grid'))
-        @include('partials.list', ['components' => config('components.' . $model)])
-    @else
-        @include('partials.grid', ['components' => config('components.' . $model)])
-    @endempty
+    <div class="row">
+        <div class="col-sm-8">
+            @empty (config('components.' . $model . '.grid'))
+                @include('partials.list', ['components' => config('components.' . $model)])
+            @else
+                @include('partials.grid', ['components' => config('components.' . $model)])
+            @endempty
+        </div>
+
+        <div class="col-sm-4">
+            @include('partials.create', ['components' => config('components.' . $model)])
+        </div>
+    </div>
 @stop
 
 @push('styles')

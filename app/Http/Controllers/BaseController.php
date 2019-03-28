@@ -21,14 +21,15 @@ class BaseController extends Controller
     {
         $items = $this->service->getAll();
 
-        return view('pages.list', [
+        return view('pages.index', [
             'subtitle' => $this->subtitle,
             'model' => $this->model,
             'items' => $items,
         ]);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $item = $this->service->get($id);
 
         return view('pages.edit');
