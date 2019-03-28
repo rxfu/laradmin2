@@ -33,5 +33,21 @@ return [
         [
             'field' => 'name',
         ],
+        [
+            'field' => 'email',
+        ],
+        [
+            'field' => 'is_enable',
+            'presenter' => true,
+            'type' => 'radio',
+        ],
+        [
+            'field' => 'is_super',
+            'presenter' => true,
+            'type' => 'radio'
+        ],
+        [
+            'field' => 'created_at',
+        ],
     ],
 ];

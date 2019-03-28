@@ -6,10 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Laracasts\Presenter\PresentableTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use PresentableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -40,20 +42,25 @@ class User extends Authenticatable
         'is_super' => 'boolean',
     ];
 
+    protected $presenter = 'App\Presenters\UserPresenter';
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
     }
 
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany('App\Entities\Role');
     }
 
-    public function departments() {
+    public function departments()
+    {
         return $this->belongsToMany('App\Entities\Department');
     }
 
-    public function logs() {
+    public function logs()
+    {
         return $this->hasMany('App\Entities\Log');
     }
 }
