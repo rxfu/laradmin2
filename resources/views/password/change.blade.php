@@ -8,7 +8,7 @@
 				<h3 class="card-title">修改密码</h3>
 			</div>
 
-		    <form role="form" id="change-password-form" name="change-password-form" method="post" action="{{ route('password.change') }}" aria-label="修改密码">
+		    <form role="form" id="change-password-form" name="change-password-form" method="post" action="{{ route('password.password') }}" aria-label="修改密码">
 		    	@method('put')
 		        @csrf
 				<div class="card-body">

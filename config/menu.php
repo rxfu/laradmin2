@@ -34,10 +34,10 @@ return [
             ],
         ],
         'password' => [
-            'change' => [
+            'password' => [
                 'title' => '修改密码',
                 'icon' => 'shield-alt',
-                'route' => 'password.change',
+                'route' => 'password.password',
             ],
         ],
     ],
