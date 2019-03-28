@@ -18,7 +18,7 @@
 						<th scope="col">#</th>
 						@foreach (array_column($components, 'field') as $field)
 							@if (!isset($components[$loop->index]['list']) || (true === $components[$loop->index]['list']))
-								<th scope="col">{{ trans($model . '.' . $field) }}</th>
+								<th scope="col">{{ __($model . '.' . $field) }}</th>
 							@endif
 						@endforeach
 						<th scope="col">操作</th>
@@ -33,13 +33,19 @@
                                 </div>
                             </td>
 							<td>{{ $item->id }}</td>
-							@foreach (array_column($components, 'field') as $field)
-								@if (!isset($components[$loop->index]['list']) || (true === $components[$loop->index]['list']))
-									<td>{{ $item->{$field} }}</td>
+							@foreach ($components as $component)
+								@if (!isset($component['list']) || (true === $component['list']))
+									<td>
+										@if (!empty($component['presenter']))
+											{{ $item->present()->{Illuminate\Support\Str::camel($component['field'])} }}
+										@else
+											{{ $item->{$component['field']} }}
+										@endif
+									</td>
 								@endif
 							@endforeach
 	                        <td>
-	                            <a href="{{ route($model . '.edit', $item->id) }}" class="btn btn-info btn-flat btn-sm" title="编辑">
+	                            <a href="{{ route($model . '.edit', $item->id) }}" class="btn btn-primary btn-flat btn-sm" title="编辑">
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>
