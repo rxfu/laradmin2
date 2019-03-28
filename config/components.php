@@ -39,15 +39,18 @@ return [
         [
             'field' => 'is_enable',
             'presenter' => true,
+            'responsive' => 'none',
             'type' => 'radio',
         ],
         [
             'field' => 'is_super',
             'presenter' => true,
+            'responsive' => 'none',
             'type' => 'radio'
         ],
         [
             'field' => 'created_at',
+            'responsive' => 'none',
         ],
     ],
 ];

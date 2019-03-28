@@ -10,18 +10,19 @@
 			<table id="itemsTable" class="table table-bordered table-striped datatable">
 				<thead>
 					<tr>
-						<th scope="col">
+						<th scope="col" class="all">
                             <div class="form-check">
                                 <input type="checkbox" id="allItems" name="allItems" value="all">
                             </div>
                         </th>
 						<th scope="col">#</th>
-						@foreach (array_column($components, 'field') as $field)
-							@if (!isset($components[$loop->index]['list']) || (true === $components[$loop->index]['list']))
-								<th scope="col">{{ __($model . '.' . $field) }}</th>
+						@foreach ($components as $component)
+							@if (!isset($component['list']) || (true === $component['list']))
+								<th scope="col" class="{{ isset($component['responsive']) ? $component['responsive'] : 'desktop' }}">{{ __($model . '.' . $component['field']) }}</th>
 							@endif
 						@endforeach
-						<th scope="col">操作</th>
+						<th scope="col" class="all">操作</th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -49,6 +50,7 @@
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>
+	                        <td></td>
 						</tr>
 					@endforeach
 				</tbody>
