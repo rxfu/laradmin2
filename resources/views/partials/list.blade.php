@@ -1,5 +1,5 @@
-<div class="card">
-	<div class="card-header card-primary">
+<div class="card card-primary">
+	<div class="card-header">
 		<h3 class="card-title">{{ $subtitle ?? '' }}列表</h3>
 	</div>
 
@@ -15,14 +15,13 @@
                                 <input type="checkbox" id="allItems" name="allItems" value="all">
                             </div>
                         </th>
-						<th scope="col">#</th>
 						@foreach ($components as $component)
-							@if (!isset($component['list']) || (true === $component['list']))
+							@if (!empty($component['list']))
 								<th scope="col" class="{{ isset($component['responsive']) ? $component['responsive'] : 'desktop' }}">{{ __($model . '.' . $component['field']) }}</th>
 							@endif
 						@endforeach
 						<th scope="col" class="all">操作</th>
-						<th scope="col"></th>
+						<th scope="col" class="all"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,9 +32,8 @@
                                     <input type="checkbox" name="items[]" value="{{ $item->id }}">
                                 </div>
                             </td>
-							<td>{{ $item->id }}</td>
 							@foreach ($components as $component)
-								@if (!isset($component['list']) || (true === $component['list']))
+								@if (!empty($component['list']))
 									<td>
 										@if (!empty($component['presenter']))
 											{{ $item->present()->{Illuminate\Support\Str::camel($component['field'])} }}
@@ -58,9 +56,18 @@
 		</div>
 
 		<div class="card-footer">
-	        <button type="submit" class="btn btn-danger" onclick="return window.confirm('请问确定要删除这些{{ $subtitle }}吗？')">
-	            <i class="icon fa fa-trash"></i> 删除所选
-	        </button>
+			<div class="row">
+				<div class="col">
+			        <button type="submit" class="btn btn-danger" onclick="return window.confirm('请问确定要删除这些{{ $subtitle }}吗？')">
+			            <i class="icon fa fa-trash"></i> 删除所选
+			        </button>
+			    </div>
+			    <div class="col text-right">
+			    	<a href="{{ route($model . '.list', 'create') }}" class="btn btn-success">
+			    		<i class="icon fa fa-plus"></i> 创建{{ $subtitle ?: '' }}
+			    	</a>
+			    </div>
+			</div>
 		</div>
 	</form>
 </div>

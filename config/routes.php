@@ -29,7 +29,7 @@ return [
 	],
 	'user' => [
 		[
-			'url' => 'list',
+			'url' => 'list/{action?}/{id?}',
 			'action' => 'list',
 			'method' => 'get',
 		],

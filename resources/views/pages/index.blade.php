@@ -2,17 +2,21 @@
 
 @section('content')
 <div class="row">
-    <div class="col-sm-8">
-        @empty (config('components.' . $model . '.grid'))
+    @empty (config('components.' . $model . '.grid'))
+        <div class="col-sm-8">
             @include('partials.list', ['components' => config('components.' . $model)])
-        @else
+        </div>
+
+        <div class="col-sm-4">
+            @if ('create' === $action)
+                @include('partials.create', ['components' => config('components.' . $model)])
+            @endif
+        </div>
+    @else
+        <div class="col-sm-12">
             @include('partials.grid', ['components' => config('components.' . $model)])
-        @endempty
-    </div>
-    
-    <div class="col-sm-4">
-        @include('partials.create', ['components' => config('components.' . $model)])
-    </div>
+        </div>
+    @endempty
 </div>
 @stop
 

@@ -17,13 +17,15 @@ class BaseController extends Controller
         $this->service = $service;
     }
 
-    public function list()
+    public function list($action = null, $id = null)
     {
+        $action = is_null($action) ? 'create' : $action;
         $items = $this->service->getAll();
 
         return view('pages.index', [
             'subtitle' => $this->subtitle,
             'model' => $this->model,
+            'action' => $action,
             'items' => $items,
         ]);
     }

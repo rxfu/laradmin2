@@ -1,5 +1,5 @@
-<div class="card">
-	<div class="card-header card-primary">
+<div class="card card-primary">
+	<div class="card-header">
 		<h3 class="card-title">{{ $subtitle ?? '' }}列表</h3>
 	</div>
 
@@ -7,23 +7,29 @@
 		<table id="itemsTable" class="table table-bordered table-striped datatable">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
-					@foreach (array_column($components, 'field') as $field)
-						@if (!isset($components[$loop->index]['list']) || (true === $components[$loop->index]['list']))
-							<th scope="col">{{ trans($model . '.' . $field) }}</th>
+					@foreach ($components as $component)
+						@if (!empty($component['list']))
+							<th scope="col" class="{{ isset($component['responsive']) ? $component['responsive'] : 'desktop' }}">{{ __($model . '.' . $component['field']) }}</th>
 						@endif
 					@endforeach
+					<th scope="col" class="all"></th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($items as $item)
 					<tr>
-						<td>{{ $item->id }}</td>
-						@foreach (array_column($components, 'field') as $field)
-							@if (!isset($components[$loop->index]['list']) || (true === $components[$loop->index]['list']))
-								<td>{{ $item->{$field} }}</td>
+						@foreach ($components as $component)
+							@if (!empty($component['list']))
+								<td>
+									@if (!empty($component['presenter']))
+										{{ $item->present()->{Illuminate\Support\Str::camel($component['field'])} }}
+									@else
+										{{ $item->{$component['field']} }}
+									@endif
+								</td>
 							@endif
 						@endforeach
+						<td></td>
 					</tr>
 				@endforeach
 			</tbody>
