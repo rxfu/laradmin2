@@ -3,7 +3,7 @@
 		<h3 class="card-title">创建{{ $subtitle ?? '' }}</h3>
 	</div>
 
-    <form role="form" id="create-form" name="create-form" method="post" action="#" aria-label="创建{{ $subtitle ?? '' }}">
+    <form role="form" id="create-form" name="create-form" method="post" action="{{ route($model . '.store') }}" aria-label="创建{{ $subtitle ?? '' }}">
         @csrf
 		<div class="card-body">
 			@foreach ($components as $component)

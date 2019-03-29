@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
+    protected $request;
+
     protected $service;
 
     protected $model;
 
     protected $subtitle;
 
-    public function __construct(Service $service)
+    public function __construct(Service $service, Request $request)
     {
         $this->service = $service;
+        $this->request = $request;
     }
 
     public function list($action = null, $id = null)
@@ -30,10 +33,9 @@ class BaseController extends Controller
         ]);
     }
 
-    public function edit($id)
-    {
-        $item = $this->service->get($id);
+    public function store() {
+        $this->service->store($this->request->all());
 
-        return view('pages.edit');
+        return back()->withSuccess('创建' . $this->subtitle . '成功');
     }
 }

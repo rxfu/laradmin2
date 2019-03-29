@@ -13,8 +13,12 @@ class Service
         $this->repository = $repository;
     }
 
-    public function getAll($order = false)
+    public function getAll()
     {
         return $this->repository->getAll();
+    }
+
+    public function store($data) {
+    	return $this->repository->store($data);
     }
 }
