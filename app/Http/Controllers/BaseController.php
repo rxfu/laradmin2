@@ -6,18 +6,15 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-    protected $request;
-
     protected $service;
 
     protected $model;
 
     protected $subtitle;
 
-    public function __construct(Service $service, Request $request)
+    public function __construct(Service $service)
     {
         $this->service = $service;
-        $this->request = $request;
     }
 
     public function list($action = null, $id = null)
@@ -33,8 +30,8 @@ class BaseController extends Controller
         ]);
     }
 
-    public function store() {
-        $this->service->store($this->request->all());
+    public function store(Request $request) {
+        $this->service->store($request->all());
 
         return back()->withSuccess('创建' . $this->subtitle . '成功');
     }
