@@ -44,7 +44,7 @@
 								@endif
 							@endforeach
 	                        <td>
-	                            <a href="{{ route($model . '.edit', $item->id) }}" class="btn btn-primary btn-flat btn-sm" title="编辑">
+	                            <a href="{{ route($model . '.list', ['edit', $item->id]) }}" class="btn btn-info btn-flat btn-sm" title="编辑">
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>

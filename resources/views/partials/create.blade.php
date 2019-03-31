@@ -67,7 +67,7 @@
 
 		<div class="card-footer">
 	        <button type="submit" class="btn btn-success">
-	            <i class="icon fa fa-plus"></i> 创建
+	            <i class="icon fa fa-save"></i> 创建
 	        </button>
 		</div>
 	</form>
