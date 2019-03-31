@@ -37,12 +37,16 @@ return [
             'create' => true,
             'responsive' => 'all',
             'type' => 'text',
+            'required' => true,
+            'validation' => 'required',
         ],
         [
             'field' => 'password',
             'list' => false,
             'create' => true,
             'type' => 'password',
+            'required' => true,
+            'validation' => 'required|min:6',
         ],
         [
             'field' => 'name',
@@ -63,6 +67,8 @@ return [
             'presenter' => true,
             'responsive' => 'none',
             'type' => 'radio',
+            'required' => true,
+            'validation' => 'required',
         ],
         [
             'field' => 'is_super',
@@ -70,7 +76,9 @@ return [
             'create' => true,
             'presenter' => true,
             'responsive' => 'none',
-            'type' => 'radio'
+            'type' => 'radio',
+            'required' => true,
+            'validation' => 'required',
         ],
         [
             'field' => 'created_at',

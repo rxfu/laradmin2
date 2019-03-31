@@ -37,7 +37,7 @@
                                             #
                                         @endisset
                                     @endisset
-                                    " class="nav-link">
+                                    " class="nav-link{{ request()->route()->getName() === $item['route'] ? ' active' : '' }}">
                                         @isset ($item['icon'])
                                             <i class="nav-icon fas fa-{{ $item['icon'] }}"></i>
                                         @endisset
@@ -59,7 +59,7 @@
                                                         #
                                                     @endisset
                                                 @endisset
-                                                " class="nav-link">
+                                                " class="nav-link{{ request()->route()->getName() === $item['route'] ? ' active' : '' }}">
                                                     @isset ($subitem['icon'])                                          
                                                         <i class="nav-icon fas fa-{{ $subitem['icon'] }}"></i>
                                                     @else
@@ -83,7 +83,7 @@
                                             #
                                         @endisset
                                     @endisset
-                                    " class="nav-link">
+                                    " class="nav-link{{ request()->route()->getName() === $item['route'] ? ' active' : '' }}">
                                         @isset ($item['icon'])
                                             <i class="nav-icon fas fa-{{ $item['icon'] }}"></i>
                                         @endisset

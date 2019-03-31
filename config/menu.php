@@ -16,7 +16,7 @@ return [
             'dashboard' => [
                 'title' => '使用说明',
                 'icon' => 'tachometer-alt',
-                'url' => '/',
+                'route' => 'home.dashboard',
             ],
         ],
         'user' => [

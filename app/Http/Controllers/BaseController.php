@@ -31,6 +31,18 @@ class BaseController extends Controller
     }
 
     public function store(Request $request) {
+        $rules = [];
+
+        foreach (config('components.' . $this->model) as $component) {
+            if (isset($component['validation'])) {
+                $rules[$component['field']] = $component['validation'];
+            }
+        }
+        
+        if (!empty($rules)) {
+            $request->validate($rules);
+        }
+
         $this->service->store($request->all());
 
         return back()->withSuccess('创建' . $this->subtitle . '成功');
