@@ -1,6 +1,6 @@
 <div class="card card-primary">
 	<div class="card-header">
-		<h3 class="card-title">{{ $subtitle ?? '' }}列表</h3>
+		<h3 class="card-title">{{ $modname ?? '' }}列表</h3>
 	</div>
 
     <form id="delete-form" action="#" method="post">
@@ -58,13 +58,13 @@
 		<div class="card-footer">
 			<div class="row">
 				<div class="col">
-			        <button type="submit" class="btn btn-danger" onclick="return window.confirm('请问确定要删除这些{{ $subtitle }}吗？')">
+			        <button type="submit" class="btn btn-danger" onclick="return window.confirm('请问确定要删除这些{{ $modname }}吗？')">
 			            <i class="icon fa fa-trash"></i> 删除所选
 			        </button>
 			    </div>
 			    <div class="col text-right">
 			    	<a href="{{ route($model . '.index', 'create') }}" class="btn btn-success">
-			    		<i class="icon fa fa-plus"></i> 创建{{ $subtitle ?: '' }}
+			    		<i class="icon fa fa-plus"></i> 创建{{ $modname ?: '' }}
 			    	</a>
 			    </div>
 			</div>

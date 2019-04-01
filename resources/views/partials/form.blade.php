@@ -2,9 +2,9 @@
 	<div class="card-header">
 		<h3 class="card-title">
 			@if ('create' === $action)
-				创建{{ $subtitle ?? '' }}
+				创建{{ $modname ?? '' }}
 			@elseif ('edit' === $action)
-				编辑{{ $subtitle ?? '' }}{{ $id }}
+				编辑{{ $modname ?? '' }}{{ $id }}
 			@endif
 		</h3>
 	</div>

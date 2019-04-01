@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    You are logged in!
+    欢迎使用Laravel Admin管理系统
 @endsection

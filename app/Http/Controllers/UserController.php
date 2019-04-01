@@ -10,6 +10,6 @@ class UserController extends BaseController
     {
         $this->service = $userService;
         $this->model = 'user';
-        $this->subtitle = '用户';
+        $this->modname = '用户';
     }
 }

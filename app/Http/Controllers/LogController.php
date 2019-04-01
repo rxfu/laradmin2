@@ -11,6 +11,6 @@ class LogController extends BaseController
     {
         $this->service = $logService;
         $this->model = 'log';
-        $this->subtitle = '日志';
+        $this->modname = '日志';
     }
 }
