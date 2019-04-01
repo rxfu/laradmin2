@@ -13,12 +13,23 @@ class Service
         $this->repository = $repository;
     }
 
+    public function get($id)
+    {
+        return $this->repository->get($id);
+    }
+
     public function getAll()
     {
         return $this->repository->getAll();
     }
 
-    public function store($data) {
-    	return $this->repository->store($data);
+    public function store($data)
+    {
+        return $this->repository->store($data);
+    }
+
+    public function update($id, $data)
+    {
+        return $this->repository->update($id, $data);
     }
 }

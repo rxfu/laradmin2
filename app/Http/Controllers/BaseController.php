@@ -22,12 +22,18 @@ class BaseController extends Controller
         $action = is_null($action) ? 'create' : $action;
         $items = $this->service->getAll();
 
+        $item = null;
+        if (!is_null($id)) {
+            $item = $this->service->get($id);
+        }
+
         return view('pages.index', [
             'modname' => $this->modname,
             'model' => $this->model,
             'action' => $action,
             'id' => $id,
             'items' => $items,
+            'item' => $item,
         ]);
     }
 
