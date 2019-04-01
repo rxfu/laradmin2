@@ -58,6 +58,9 @@
 	                    	@if (!empty($component['required']))
 	                    		<span class="text-danger">（*必填项）</span>
 	                    	@endif
+			                @if (!empty($component['help']))
+			                	<small class="form-text text-muted">{{ $component['help'] }}</small>
+			                @endif
 	                        @if ($errors->has($component['field']))
 		                        <div class="invalid-feedback" role="alert">
 		                            <strong>{{ $errors->first($component['field']) }}</strong>

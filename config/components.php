@@ -48,6 +48,7 @@ return [
             'type' => 'password',
             'required' => true,
             'validation' => 'required|min:6',
+            'help' => '密码至少6位',
         ],
         [
             'field' => 'name',
