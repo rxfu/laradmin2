@@ -23,21 +23,11 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           	    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 @foreach (config('menu.sidebar') as $items)
-                    @foreach ($items as $item)
-                        @if (is_array($item))
+                    @if (is_array($items))
+                        @foreach ($items as $item)
                             @isset($item['children'])
                                 <li class="nav-item has-treeview">
-                                    <a href="
-                                    @isset($item['route'])
-                                        {{ route($item['route']) }}
-                                    @else
-                                        @isset ($item['url'])
-                                            {{ url($item['url']) }}
-                                        @else
-                                            #
-                                        @endisset
-                                    @endisset
-                                    " class="nav-link{{ request()->route()->getName() === $item['route'] ? ' active' : '' }}">
+                                    <a href="{{ isset($item['route']) ? route($item['route']) : '#' }}" class="nav-link{{ isset($item['route']) && (request()->route()->getName() === $item['route']) ? ' active' : '' }}">
                                         @isset ($item['icon'])
                                             <i class="nav-icon fas fa-{{ $item['icon'] }}"></i>
                                         @endisset
@@ -49,18 +39,8 @@
                                     <ul class="nav nav-treeview">
                                         @foreach ($item['children'] as $subitem)
                                             <li class="nav-item">
-                                                <a href="
-                                                @isset($subitem['route'])
-                                                    {{ route($subitem['route']) }}
-                                                @else
-                                                    @isset ($subitem['url'])
-                                                        {{ url($subitem['url']) }}
-                                                    @else
-                                                        #
-                                                    @endisset
-                                                @endisset
-                                                " class="nav-link{{ request()->route()->getName() === $item['route'] ? ' active' : '' }}">
-                                                    @isset ($subitem['icon'])                                          
+                                                <a href="{{ isset($subitem['route']) ? route($subitem['route']) : '#' }}" class="nav-link{{ isset($subitem['route']) && (request()->route()->getName() === $subitem['route']) ? ' active' : '' }}">
+                                                    @isset ($subitem['icon'])               
                                                         <i class="nav-icon fas fa-{{ $subitem['icon'] }}"></i>
                                                     @else
                                                         <i class="nav-icon far fa-circle"></i>
@@ -73,17 +53,7 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a href="
-                                    @isset($item['route'])
-                                        {{ route($item['route']) }}
-                                    @else
-                                        @isset ($item['url'])
-                                            {{ url($item['url']) }}
-                                        @else
-                                            #
-                                        @endisset
-                                    @endisset
-                                    " class="nav-link{{ request()->route()->getName() === $item['route'] ? ' active' : '' }}">
+                                    <a href="{{ isset($item['route']) ? route($item['route']) : '#' }}" class="nav-link{{ isset($item['route']) && (request()->route()->getName() === $item['route']) ? ' active' : '' }}">
                                         @isset ($item['icon'])
                                             <i class="nav-icon fas fa-{{ $item['icon'] }}"></i>
                                         @endisset
@@ -91,10 +61,10 @@
                                     </a>
                                 </li>
                             @endisset
-                        @else
-                            <li class="nav-header">{{ $item }}</li>
-                        @endif
-                    @endforeach
+                        @endforeach
+                    @else
+                        <li class="nav-header">{{ $items }}</li>
+                    @endif
                 @endforeach
             </ul>
         </nav>

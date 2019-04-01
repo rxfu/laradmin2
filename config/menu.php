@@ -33,6 +33,7 @@ return [
                 'route' => 'log.index',
             ],
         ],
+        '个人设置',
         'password' => [
             'password' => [
                 'title' => '修改密码',
