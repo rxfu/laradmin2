@@ -3,9 +3,9 @@
 		<h3 class="card-title">{{ $modname ?? '' }}列表</h3>
 	</div>
 
-    <form id="delete-form" action="#" method="post">
+    <form id="delete-form" action="{{ route($model . '.delete') }}" method="post">
+    	@csrf
         @method('delete')
-        @csrf
 		<div class="card-body">
 			<table id="itemsTable" class="table table-bordered table-striped datatable">
 				<thead>

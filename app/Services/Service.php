@@ -30,6 +30,10 @@ class Service
 
     public function update($id, $data)
     {
-        return $this->repository->update($id, $data);
+        $this->repository->update($id, $data);
+    }
+
+    public function delete($ids) {
+        $this->repository->deleteAll($ids);
     }
 }

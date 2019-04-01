@@ -76,8 +76,8 @@ class BaseController extends Controller
         }
     }
 
-    public function delete($ids) {
-        $this->service->delete($ids);
+    public function delete(Request $request) {
+        $this->service->delete($request->input('items'));
 
         return back()->withSuccess('删除' . $this->modname . '成功');
     }

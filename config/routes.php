@@ -43,5 +43,10 @@ return [
             'action' => 'update',
             'method' => 'put',
         ],
+        [
+            'url' => 'delete',
+            'action' => 'delete',
+            'method' => 'delete',
+        ],
     ],
 ];
