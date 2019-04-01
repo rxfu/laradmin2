@@ -20,17 +20,17 @@ return [
             ],
         ],
         'user' => [
-            'list' => [
+            'index' => [
                 'title' => '用户管理',
                 'icon' => 'users',
-                'route' => 'user.list',
+                'route' => 'user.index',
             ],
         ],
         'log' => [
-            'list' => [
+            'index' => [
                 'title' => '日志管理',
                 'icon' => 'book',
-                'route' => 'log.list',
+                'route' => 'log.index',
             ],
         ],
         'password' => [

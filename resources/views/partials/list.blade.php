@@ -44,7 +44,7 @@
 								@endif
 							@endforeach
 	                        <td>
-	                            <a href="{{ route($model . '.list', ['edit', $item->id]) }}" class="btn btn-info btn-flat btn-sm" title="编辑">
+	                            <a href="{{ route($model . '.index', ['edit', $item->id]) }}" class="btn btn-info btn-flat btn-sm" title="编辑">
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>
@@ -63,7 +63,7 @@
 			        </button>
 			    </div>
 			    <div class="col text-right">
-			    	<a href="{{ route($model . '.list', 'create') }}" class="btn btn-success">
+			    	<a href="{{ route($model . '.index', 'create') }}" class="btn btn-success">
 			    		<i class="icon fa fa-plus"></i> 创建{{ $subtitle ?: '' }}
 			    	</a>
 			    </div>
