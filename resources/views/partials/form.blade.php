@@ -1,4 +1,10 @@
-<div class="card card-success">
+<div class="card
+	@if ('create' === $action)
+		card-success
+	@elseif ('edit' === $action)
+		card-info
+	@endif
+">
 	<div class="card-header">
 		<h3 class="card-title">
 			@if ('create' === $action)
@@ -26,6 +32,8 @@
 		                    	<input type="text" name="{{ $component['field'] }}" id="{{ $component['field'] }}" class="form-control{{ $errors->has($component['field']) ? ' is_invalid' : '' }}" placeholder="{{ __($model . '.' . $component['field']) }}" value="{{ old($component['field']) }}"{{ !empty($component['required']) ? ' required' : '' }}>
 				            @elseif ('password' === $component['type'])
 		                    	<input type="password" name="{{ $component['field'] }}" id="{{ $component['field'] }}" class="form-control{{ $errors->has($component['field']) ? ' is_invalid' : '' }}" placeholder="{{ __($model . '.' . $component['field']) }}"{{ !empty($component['required']) ? ' required' : '' }}>
+				            @elseif ('textarea' === $component['type'])
+				            	<textarea name="{{ $component['field'] }}" id="{{ $component['field'] }}" rows="5" class="form-control{{ $errors->has($component['field']) ? ' is_invalid' : '' }}"{{ !empty($component['required']) ? ' required' : '' }}>{{ old($component['field']) }}</textarea>
 				            @elseif ('radio' === $component['type'])
 				            	@foreach (explode('|', $component['values']) as $item)
 				            		@php
@@ -36,8 +44,16 @@
 			                    		<label class="form-check-label" for="{{ $component['field'] . $loop->index }}">{{ $value[1] }}</label>
 			                    	</div>
 				            	@endforeach
-				            @elseif ('textarea' === $component['type'])
-				            	<textarea name="{{ $component['field'] }}" id="{{ $component['field'] }}" rows="5" class="form-control{{ $errors->has($component['field']) ? ' is_invalid' : '' }}"{{ !empty($component['required']) ? ' required' : '' }}>{{ old($component['field']) }}</textarea>
+				            @elseif ('checkbox' === $component['type'])
+				            	@foreach (explode('|', $component['values']) as $item)
+				            		@php
+				            			$value = explode(':', $item)
+				            		@endphp
+			                    	<div class="form-check form-check-inline">
+			                    		<input type="checkbox" name="{{ $component['field'] }}" id="{{ $component['field']. $loop->index }}" class="form-check-input{{ $errors->has($component['field']) ? ' is_invalid' : '' }}" value="{{ $value[0] }}"{{ !empty($component['required']) ? ' required' : '' }}{{ isset($component['default']) && ($value[0] == $component['default']) ? ' checked' : '' }}>
+			                    		<label class="form-check-label" for="{{ $component['field'] . $loop->index }}">{{ $value[1] }}</label>
+			                    	</div>
+				            	@endforeach
 			                @endif
 	                    	@if (!empty($component['required']))
 	                    		<span class="text-danger">（*必填项）</span>

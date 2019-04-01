@@ -26,6 +26,7 @@ class BaseController extends Controller
             'modname' => $this->modname,
             'model' => $this->model,
             'action' => $action,
+            'id' => $id,
             'items' => $items,
         ]);
     }
@@ -51,20 +52,21 @@ class BaseController extends Controller
 
     public function update(Request $request, $id)
     {
-        $rules = [];
+        if ($request->isMethod('put')) {
+            $rules = [];
 
-        foreach (config('components.' . $this->model) as $component) {
-            if (isset($component['validation'])) {
-                $rules[$component['field']] = $component['validation'];
+            foreach (config('components.' . $this->model) as $component) {
+                if (isset($component['validation'])) {
+                    $rules[$component['field']] = $component['validation'];
+                }
             }
-        }
         
-        if (!empty($rules)) {
-            $request->validate($rules);
+            if (!empty($rules)) {
+                $request->validate($rules);
+            }
+            $this->service->update($id, $request->all());
+
+            return back()->withSuccess('更新' . $this->modname . '成功');
         }
-
-        $this->service->store($id, $request->all());
-
-        return back()->withSuccess('更新' . $this->modname . '成功');
     }
 }

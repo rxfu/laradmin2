@@ -38,5 +38,10 @@ return [
             'action' => 'store',
             'method' => 'post',
         ],
+        [
+            'url' => 'update/{id}',
+            'action' => 'update',
+            'method' => 'put',
+        ],
     ],
 ];

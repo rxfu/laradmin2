@@ -61,7 +61,7 @@ return [
             'list' => true,
             'create' => true,
             'edit' => true,
-            'type' => 'textarea',
+            'type' => 'text',
         ],
         [
             'field' => 'is_enable',
