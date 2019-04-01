@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-sm-4">
-            @include('partials.form', ['components' => config('components.' . $model)])
+            @includeIf('partials.' . $action, ['components' => config('components.' . $model)])
         </div>
     @else
         <div class="col-sm-12">

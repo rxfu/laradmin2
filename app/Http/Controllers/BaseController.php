@@ -42,7 +42,7 @@ class BaseController extends Controller
         $rules = [];
 
         foreach (config('components.' . $this->model) as $component) {
-            if (isset($component['validation'])) {
+            if (!empty($component['create']) && isset($component['validation'])) {
                 $rules[$component['field']] = $component['validation'];
             }
         }
@@ -62,7 +62,7 @@ class BaseController extends Controller
             $rules = [];
 
             foreach (config('components.' . $this->model) as $component) {
-                if (isset($component['validation'])) {
+                if (!empty($component['edit']) && isset($component['validation'])) {
                     $rules[$component['field']] = $component['validation'];
                 }
             }
@@ -74,5 +74,11 @@ class BaseController extends Controller
 
             return back()->withSuccess('更新' . $this->modname . '成功');
         }
+    }
+
+    public function delete($ids) {
+        $this->service->delete($ids);
+
+        return back()->withSuccess('删除' . $this->modname . '成功');
     }
 }
