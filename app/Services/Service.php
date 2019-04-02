@@ -18,9 +18,9 @@ class Service
         return $this->repository->get($id);
     }
 
-    public function getAll()
+    public function getAll($order = 'id', $direction = 'asc')
     {
-        return $this->repository->getAll();
+        return $this->repository->getAll($order, $direction);
     }
 
     public function store($data)
@@ -33,7 +33,8 @@ class Service
         $this->repository->update($id, $data);
     }
 
-    public function delete($ids) {
+    public function delete($ids)
+    {
         $this->repository->deleteAll($ids);
     }
 }

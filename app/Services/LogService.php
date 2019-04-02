@@ -13,8 +13,15 @@ class LogService extends Service
         $this->repository = $logs;
     }
 
-    public function write($level, $action, $content)
+    public function getAll($order = 'created_at', $direction = 'desc')
     {
+        return parent::getAll('created_at', 'desc');
+    }
+
+    public function write($level, $action, $model, $content = null)
+    {
+        $entity = basename(str_replace('\\', '/', get_class($model)));
+
         $data = [
             'user_id' => Auth::user()->id,
             'ip' => request()->ip(),
@@ -22,7 +29,7 @@ class LogService extends Service
             'path' => request()->path(),
             'method' => request()->method(),
             'action' => $action,
-            'entity' => $this->repository->getModel(),
+            'entity' => $entity,
             'content' => json_encode($content),
         ];
 

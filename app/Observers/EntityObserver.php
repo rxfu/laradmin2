@@ -15,21 +15,21 @@ class EntityObserver
 
     public function created($model)
     {
-        $this->service->write('INFO', 'INSERT', $model->getAttributes());
+        $this->service->write('INFO', 'INSERT', $model, $model->getAttributes());
     }
 
     public function updating($model)
     {
-        $this->service->write('INFO', 'UPDATE', $model->getAttributes());
+        $this->service->write('INFO', 'UPDATE', $model, $model->getAttributes());
     }
 
     public function updated($model)
     {
-        $this->service->write('INFO', 'UPDATE', $model->getAttributes());
+        $this->service->write('INFO', 'UPDATE', $model, $model->getAttributes());
     }
 
     public function deleting($model)
     {
-        $this->service->write('INFO', 'DELETE', $model->getAttributes());
+        $this->service->write('INFO', 'DELETE', $model, $model->getAttributes());
     }
 }

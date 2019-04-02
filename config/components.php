@@ -17,7 +17,19 @@ return [
             'list' => true,
         ],
         [
+            'field' => 'path',
+            'list' => true,
+        ],
+        [
+            'field' => 'method',
+            'list' => true,
+        ],
+        [
             'field' => 'action',
+            'list' => true,
+        ],
+        [
+            'field' => 'entity',
             'list' => true,
         ],
         [

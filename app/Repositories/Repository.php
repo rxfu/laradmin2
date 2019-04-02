@@ -42,9 +42,9 @@ class Repository
         }
     }
 
-    public function getAll()
+    public function getAll($order = 'id', $direction = 'asc')
     {
-        return $this->object->all();
+        return $this->object->orderBy($order, $direction)->get();
     }
 
     public function store($attributes)
