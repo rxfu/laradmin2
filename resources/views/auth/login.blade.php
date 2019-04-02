@@ -49,7 +49,7 @@
                     <div class="col-8">
                         <div class="checkbox icheck">
                             <label>
-                                <input type="checkbox"> 记住我
+                                <input type="checkbox" value="1" name="remember_me"> 记住我
                             </label>
                         </div>
                     </div>

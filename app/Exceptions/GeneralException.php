@@ -18,7 +18,7 @@ class GeneralException extends Exception
     {
         $log = new LogService(new LogRepository(new Log));
 
-        $log->write('ERROR', 'EXCEPTION', $this->getMessage());
+        $log->write('ERROR', 'EXCEPTION', ['message' => $this->getMessage()]);
     }
 
     /**

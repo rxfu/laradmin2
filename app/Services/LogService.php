@@ -19,13 +19,16 @@ class LogService extends Service
             'user_id' => Auth::user()->id,
             'ip' => request()->ip(),
             'level' => $level,
+            'path' => request()->path(),
+            'method' => request()->method(),
             'action' => $action,
-            'content' => $content,
+            'entity' => $this->repository->getModel(),
+            'content' => json_encode($content),
         ];
 
         try {
             $this->repository->store($data);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw new GeneralException('日志保存失败');
         }
     }

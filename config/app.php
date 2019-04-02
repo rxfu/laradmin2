@@ -179,6 +179,7 @@ return [
          * Custom Service Providers...
          */
         App\Providers\ViewServiceProvider::class,
+        App\Providers\LogServiceProvider::class,
 
     ],
 

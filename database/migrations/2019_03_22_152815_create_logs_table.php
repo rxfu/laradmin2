@@ -18,7 +18,10 @@ class CreateLogsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('ip')->default(0)->comment('IP地址');
             $table->string('level', 10)->comment('级别');
-            $table->string('action', 10)->comment('操作');
+            $table->string('path', 128)->comment('路径');
+            $table->string('method', 10)->comment('方法');
+            $table->string('action', 10)->comment('动作');
+            $table->string('entity', 50)->comment('实体模型');
             $table->text('content')->comment('内容');
             $table->timestamps();
 

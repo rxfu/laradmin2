@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Exceptions\GeneralException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Str;
 
 class Repository
 {
@@ -27,7 +26,7 @@ class Repository
 
     public function getModel()
     {
-        return Str::ucfirst(Str::singular($this->getTable()));
+        return get_class($this->object);
     }
 
     public function get($id, $trashed = false)
@@ -52,7 +51,7 @@ class Repository
     {
         $attributes = is_array($attributes) ? $attributes : [$attributes];
         $object = $this->object->create($attributes);
-        ;
+
         if (!$object) {
             throw new GeneralException('{' . $this->getModel() . '} 对象创建失败');
         } else {

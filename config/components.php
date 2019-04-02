@@ -23,7 +23,7 @@ return [
         [
             'field' => 'content',
             'list' => true,
-            'responsive' => 'all',
+            'responsive' => 'hidden',
         ],
         [
             'field' => 'created_at',
@@ -56,6 +56,7 @@ return [
             'create' => true,
             'edit' => true,
             'type' => 'text',
+            'required' => true,
         ],
         [
             'field' => 'email',
