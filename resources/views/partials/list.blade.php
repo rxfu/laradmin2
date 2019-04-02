@@ -10,6 +10,7 @@
 			<table id="itemsTable" class="table table-bordered table-striped datatable">
 				<thead>
 					<tr>
+						<th scope="col"></th>
 						<th scope="col" class="all">
                             <div class="form-check">
                                 <input type="checkbox" id="allItems" name="allItems" value="all">
@@ -21,12 +22,12 @@
 							@endif
 						@endforeach
 						<th scope="col" class="all">操作</th>
-						<th scope="col" class="all"></th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($items as $item)
 						<tr>
+							<td></td>
 							<td>
                                 <div class="form-check">
                                     <input type="checkbox" name="items[]" value="{{ $item->id }}">
@@ -48,7 +49,6 @@
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>
-	                        <td></td>
 						</tr>
 					@endforeach
 				</tbody>

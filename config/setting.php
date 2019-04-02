@@ -8,7 +8,4 @@ return [
     'description' => 'Administration boilerplate using Laravel',
     'author' => 'Fu Rongxin',
     'copyright' => 'Fu Rongxin',
-    'observers' => [
-        App\Entities\User::class,
-    ],
 ];

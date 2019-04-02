@@ -7,17 +7,18 @@
 		<table id="itemsTable" class="table table-bordered table-striped datatable">
 			<thead>
 				<tr>
+					<th scope="col"></th>
 					@foreach ($components as $component)
 						@if (!empty($component['list']))
 							<th scope="col" class="{{ isset($component['responsive']) ? $component['responsive'] : 'desktop' }}">{{ __($model . '.' . $component['field']) }}</th>
 						@endif
 					@endforeach
-					<th scope="col" class="all"></th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($items as $item)
 					<tr>
+						<td></td>
 						@foreach ($components as $component)
 							@if (!empty($component['list']))
 								<td>
@@ -29,7 +30,6 @@
 								</td>
 							@endif
 						@endforeach
-						<td></td>
 					</tr>
 				@endforeach
 			</tbody>

@@ -45,16 +45,16 @@ $(function () {
         'responsive': {
             'details': {
                 'type': "column",
-                'target': -1
+                'target': 0
             }
         },
         'columnDefs': [{
         	'orderable': false,
-        	'targets': 0
+        	'targets': 1
         }, {
             'className': 'control',
             'orderable': false,
-            'targets': -1
+            'targets': 0
         }],
         "order": []
     });

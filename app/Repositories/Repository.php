@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Exceptions\GeneralException;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 
 class Repository
 {
@@ -29,6 +31,11 @@ class Repository
         return get_class($this->object);
     }
 
+    public function getObject()
+    {
+        return $this->object;
+    }
+
     public function get($id, $trashed = false)
     {
         try {
@@ -38,7 +45,7 @@ class Repository
         
             return $this->object->findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象不存在');
+            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象不存在', $this->getModel(), 'get');
         }
     }
 
@@ -49,13 +56,17 @@ class Repository
 
     public function store($attributes)
     {
-        $attributes = is_array($attributes) ? $attributes : [$attributes];
-        $object = $this->object->create($attributes);
-
-        if (!$object) {
-            throw new GeneralException('{' . $this->getModel() . '} 对象创建失败');
-        } else {
-            return $object;
+        try{
+            $attributes = is_array($attributes) ? $attributes : [$attributes];
+            $object = $this->object->create($attributes);
+    
+            if (!$object) {
+                throw new GeneralException('{' . $this->getModel() . '} 对象创建失败', $this->getModel(), 'store');
+            } else {
+                return $object;
+            }
+        } catch (QueryException $e) {
+            throw new GeneralException('{' . $this->getModel() . '} 对象创建失败：' . $e->getMessage(), $this->getModel(), 'store');
         }
     }
 
@@ -65,7 +76,7 @@ class Repository
         $attributes = is_array($attributes) ? $attributes : [$attributes];
 
         if (false === $object->update($attributes)) {
-            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象更新失败');
+            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象更新失败', $this->getModel(), 'update');
         }
     }
 
@@ -75,7 +86,7 @@ class Repository
         $success =  $force ? $object->forceDelete() : $object->delete();
 
         if (is_null($success) || (false === $success)) {
-            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象删除失败');
+            throw new GeneralException('{' . $this->getModel() . ': ' . $id . '} 对象删除失败', $this->getModel(), 'delete');
         }
     }
 

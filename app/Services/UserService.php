@@ -25,13 +25,13 @@ class UserService extends Service
                 try {
                     $this->repository->update(Auth::user()->id, ['password' => $newPassword]);
                 } catch (Exception $e) {
-                    throw new GeneralException('密码修改失败');
+                    throw new GeneralException('密码修改失败', $this->repository->getModel(), 'update');
                 }
             } else {
-                throw new GeneralException('确认密码与新密码不一致，请重新输入');
+                throw new GeneralException('确认密码与新密码不一致，请重新输入', $this->repository->getModel(), 'update');
             }
         } else {
-            throw new GeneralException('旧密码错误，请重新输入');
+            throw new GeneralException('旧密码错误，请重新输入', $this->repository->getModel(), 'update');
         }
     }
 }

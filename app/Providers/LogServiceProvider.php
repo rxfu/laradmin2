@@ -24,7 +24,7 @@ class LogServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $observers = config('setting.observers');
+        $observers = config('event.observers');
 
         foreach ($observers as $observer) {
             $observer::observe(EntityObserver::class);

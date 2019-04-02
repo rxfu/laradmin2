@@ -47,12 +47,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if (config('app.debug') === false) {
-            if ($exception instanceof GeneralException) {
-                return $exception->render($request, $exception);
-            }
-        }
-
         if ($exception instanceof TokenMismatchException) {
             return redirect('/')->withErrors('CSRF Token 已过期，请重试！');
         }

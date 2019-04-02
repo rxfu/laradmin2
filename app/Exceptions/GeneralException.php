@@ -2,23 +2,34 @@
 
 namespace App\Exceptions;
 
-use App\Entities\Log;
-use App\Repositories\LogRepository;
 use App\Services\LogService;
 use Exception;
 
 class GeneralException extends Exception
 {
+    protected $model;
+
+    protected $action;
+
+    protected $level;
+
+    public function __construct($message, $model, $action, $level = 'error') {
+        $this->model = $model;
+        $this->action = $action;
+        $this->level = $level;
+
+        parent::__construct($message);
+    }
+
     /**
      * Report or log an exception.
      *
+     * @param App\Services\LogService $log
      * @return void
      */
-    public function report()
+    public function report(LogService $log)
     {
-        $log = new LogService(new LogRepository(new Log));
-
-        $log->write('ERROR', 'EXCEPTION', ['message' => $this->getMessage()]);
+        $log->write($this->level, $this->action, $this->model, $this->getMessage());
     }
 
     /**
