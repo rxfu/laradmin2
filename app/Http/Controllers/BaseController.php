@@ -12,9 +12,12 @@ class BaseController extends Controller
 
     protected $modname;
 
-    public function __construct(Service $service)
+    protected $request;
+
+    public function __construct(Service $service, Request $request)
     {
         $this->service = $service;
+        $this->request = $request;
     }
 
     public function index($action = null, $id = null)
@@ -37,8 +40,8 @@ class BaseController extends Controller
         ]);
     }
 
-    public function store(Request $request)
-    {
+    public function store()
+    {/*
         $rules = [];
 
         foreach (config('components.' . $this->model) as $component) {
@@ -50,8 +53,8 @@ class BaseController extends Controller
         if (!empty($rules)) {
             $request->validate($rules);
         }
-
-        $this->service->store($request->all());
+*/
+        $this->service->store($this->request->all());
 
         return back()->withSuccess('创建' . $this->modname . '成功');
     }
