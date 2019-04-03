@@ -55,7 +55,7 @@ return [
             'responsive' => 'all',
             'type' => 'text',
             'required' => true,
-            'validation' => 'required|unique:users,username,' . substr(request()->path(), strrpos(request()->path(), '/') + 1),
+            'validation' => 'required'/* . substr(request()->path(), strrpos(request()->path(), '/') + 1)*/,
         ],
         [
             'field' => 'password',
@@ -80,6 +80,7 @@ return [
             'create' => true,
             'edit' => true,
             'type' => 'text',
+            'validation' => 'nullable|email',
         ],
         [
             'field' => 'is_enable',

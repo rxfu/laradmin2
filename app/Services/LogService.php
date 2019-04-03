@@ -21,7 +21,7 @@ class LogService extends Service
     public function write($content, $model, $action, $level)
     {
         $entity = basename(str_replace('\\', '/', get_class($model)));
-        $entity_id = is_null($model->getKey()) ? 0 : $model->getKey();
+        $entity_id = is_null($model->getKey()) ? '' : $model->getKey();
         $content = is_array($content) ? $content : [$content];
 
         $data = [

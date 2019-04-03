@@ -27,7 +27,7 @@ class EntityObserver
     {
         $content = [
             'message' => '更新对象',
-            'data' => $model->getAttributes(),
+            'data' => $model->getOriginal(),
         ];
 
         $this->service->write($content, $model, 'updating', 'info');
