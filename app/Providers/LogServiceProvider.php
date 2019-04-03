@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Observers\EntityObserver;
+use Event;
 use Illuminate\Support\ServiceProvider;
 
 class LogServiceProvider extends ServiceProvider
@@ -25,7 +26,6 @@ class LogServiceProvider extends ServiceProvider
     public function boot()
     {
         $observers = config('event.observers');
-
         foreach ($observers as $observer) {
             $observer::observe(EntityObserver::class);
         }
