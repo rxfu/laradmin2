@@ -18,26 +18,24 @@ class LogService extends Service
         return parent::getAll('created_at', 'desc');
     }
 
-    public function write($level, $action, $model, $content)
+    public function write($content, $model, $action, $level)
     {
-        $entity = basename(str_replace('\\', '/', $model));
-        $content = is_array($content) ? $content : ['message' => $content];
+        $entity = basename(str_replace('\\', '/', get_class($model)));
+        $entity_id = is_null($model->getKey()) ? 0 : $model->getKey();
+        $content = is_array($content) ? $content : [$content];
 
         $data = [
-            'user_id' => Auth::user()->id,
+            'user_id' => Auth::id(),
             'ip' => request()->ip(),
             'level' => $level,
             'path' => request()->path(),
             'method' => request()->method(),
             'action' => $action,
             'entity' => $entity,
+            'entity_id' => $entity_id,
             'content' => $content,
         ];
 
-        try {
-            $this->repository->store($data);
-        } catch (Exception $e) {
-            throw new GeneralException('日志保存失败', $this->repository->getModel(), 'update');
-        }
+        return parent::store($data);
     }
 }

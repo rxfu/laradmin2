@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use App\Services\LogService;
 use Exception;
 
-class GeneralException extends Exception
+class InvalidRequestException extends Exception
 {
     protected $model;
 
@@ -13,12 +13,13 @@ class GeneralException extends Exception
 
     protected $level;
 
-    public function __construct($message, $model, $action, $level = 'error') {
+    public function __construct($message, $model, $action, $level = 'error', $code = 400)
+    {
         $this->model = $model;
         $this->action = $action;
         $this->level = $level;
 
-        parent::__construct($message);
+        parent::__construct($message, $code);
     }
 
     /**
@@ -29,7 +30,11 @@ class GeneralException extends Exception
      */
     public function report(LogService $log)
     {
-        $log->write($this->level, $this->action, $this->model, $this->getMessage());
+        $content = [
+            'message' => $this->getMessage(),
+        ];
+
+        $log->write($content, $this->model, $this->action, $this->level);
     }
 
     /**

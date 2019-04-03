@@ -33,6 +33,10 @@ return [
             'list' => true,
         ],
         [
+            'field' => 'entity_id',
+            'list' => true,
+        ],
+        [
             'field' => 'content',
             'list' => true,
             'responsive' => 'hidden',
@@ -51,7 +55,7 @@ return [
             'responsive' => 'all',
             'type' => 'text',
             'required' => true,
-            'validation' => 'required',
+            'validation' => 'required|unique:users,username,' . substr(request()->path(), strrpos(request()->path(), '/') + 1),
         ],
         [
             'field' => 'password',

@@ -14,7 +14,7 @@ class Log extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'ip', 'level', 'path', 'method', 'action', 'entity', 'content',
+        'user_id', 'ip', 'level', 'path', 'method', 'action', 'entity', 'entity_id', 'content',
     ];
     
     public function getIpAttribute($value)
@@ -47,7 +47,8 @@ class Log extends Model
         $this->attributes['entity'] = Str::lower($value);
     }
 
-    public function setContentAttribute($value) {
+    public function setContentAttribute($value)
+    {
         $this->attributes['content'] = json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 

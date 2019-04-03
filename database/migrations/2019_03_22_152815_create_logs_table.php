@@ -22,6 +22,7 @@ class CreateLogsTable extends Migration
             $table->string('method', 10)->comment('方法');
             $table->string('action', 10)->comment('动作');
             $table->string('entity', 50)->comment('实体模型');
+            $table->unsignedBigInteger('entity_id')->comment('实体ID');
             $table->text('content')->comment('内容');
             $table->timestamps();
 

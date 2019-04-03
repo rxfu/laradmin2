@@ -15,21 +15,41 @@ class EntityObserver
 
     public function created($model)
     {
-        $this->service->write('info', 'created', get_class($model), $model->getAttributes());
+        $content = [
+            'message' => '创建对象成功',
+            'data' => $model->getAttributes(),
+        ];
+
+        $this->service->write($content, $model, 'created', 'info');
     }
 
     public function updating($model)
     {
-        $this->service->write('info', 'updating', get_class($model), $model->getAttributes());
+        $content = [
+            'message' => '更新对象',
+            'data' => $model->getAttributes(),
+        ];
+
+        $this->service->write($content, $model, 'updating', 'info');
     }
 
     public function updated($model)
     {
-        $this->service->write('info', 'updated', get_class($model), $model->getAttributes());
+        $content = [
+            'message' => '更新对象成功',
+            'data' => $model->getAttributes(),
+        ];
+
+        $this->service->write($content, $model, 'updated', 'info');
     }
 
     public function deleting($model)
     {
-        $this->service->write('info', 'deleting', get_class($model), $model->getAttributes());
+        $content = [
+            'message' => '删除对象',
+            'data' => $model->getAttributes(),
+        ];
+
+        $this->service->write($content, $model, 'deleting', 'info');
     }
 }

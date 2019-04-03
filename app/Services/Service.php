@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Exceptions\GeneralException;
+use App\Exceptions\InvalidRequestException;
 use App\Repositories\Repository;
+use Illuminate\Database\QueryException;
 
 class Service
 {
@@ -26,28 +27,20 @@ class Service
 
     public function store($data)
     {
-        try {
-            return $this->repository->store($data);
-        } catch (Exception $e) {
-            throw new GeneralException($this->repository->getModel() . '保存失败', $this->repository->getModel(), 'store');
-        }
+        try{
+        return $this->repository->store($data);
+    } catch (QueryException $e) {
+        dd($e);
+    }
     }
 
     public function update($id, $data)
     {
-        try {
-            $this->repository->update($id, $data);
-        } catch (Exception $e) {
-            throw new GeneralException($this->repository->getModel() . '更新失败', $this->repository->getModel(), 'update');
-        }
+        $this->repository->update($id, $data);
     }
 
     public function delete($ids)
     {
-        try {
-            $this->repository->deleteAll($ids);
-        } catch (Exception $e) {
-            throw new GeneralException($this->repository->getModel() . '删除失败', $this->repository->getModel(), 'delete');
-        }
+        $this->repository->deleteAll($ids);
     }
 }

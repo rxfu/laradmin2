@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Exceptions\GeneralException;
+use App\Exceptions\InvalidRequestException;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,15 +23,15 @@ class UserService extends Service
         if (Auth::attempt($credentials)) {
             if ($newPassword === $confirmedPassword) {
                 try {
-                    $this->repository->update(Auth::user()->id, ['password' => $newPassword]);
+                    $this->repository->update(Auth::id(), ['password' => $newPassword]);
                 } catch (Exception $e) {
-                    throw new GeneralException('密码修改失败', $this->repository->getModel(), 'update');
+                    throw new InvalidRequestException('密码修改失败', $this->repository->getObject(), 'update');
                 }
             } else {
-                throw new GeneralException('确认密码与新密码不一致，请重新输入', $this->repository->getModel(), 'update');
+                throw new InvalidRequestException('确认密码与新密码不一致，请重新输入', $this->repository->getObject(), 'update');
             }
         } else {
-            throw new GeneralException('旧密码错误，请重新输入', $this->repository->getModel(), 'update');
+            throw new InvalidRequestException('旧密码错误，请重新输入', $this->repository->getObject(), 'update');
         }
     }
 }
