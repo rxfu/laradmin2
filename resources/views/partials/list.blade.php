@@ -48,8 +48,9 @@
 	                            <a href="{{ route($model . '.index', ['edit', $item->id]) }}" class="btn btn-info btn-flat btn-sm" title="编辑">
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
+
+	                            @yield('operator')
 	                        </td>
-	                        {{ $slot }}
 						</tr>
 					@endforeach
 				</tbody>

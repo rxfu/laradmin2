@@ -35,7 +35,8 @@ class UserService extends Service
         }
     }
 
-    public function resetPassword($id) {
+    public function resetPassword($id)
+    {
         try {
             $this->repository->update($id, ['password' => config('setting.password')]);
         } catch (InvalidRequestException $e) {

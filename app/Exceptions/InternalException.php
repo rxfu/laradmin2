@@ -50,6 +50,12 @@ class InternalException extends Exception
      */
     public function render($request)
     {
-        return back()->withErrors($this->getMessage())->withInput();
+        if (config('app.debug')) {
+            $this->message = $this->exception->getMessage();
+
+            return false;
+        } else {
+            return back()->withErrors($this->getMessage())->withInput();
+        }
     }
 }
