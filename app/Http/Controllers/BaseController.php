@@ -41,46 +41,23 @@ class BaseController extends Controller
     }
 
     public function store()
-    {/*
-        $rules = [];
-
-        foreach (config('components.' . $this->model) as $component) {
-            if (!empty($component['create']) && isset($component['validation'])) {
-                $rules[$component['field']] = $component['validation'];
-            }
-        }
-        
-        if (!empty($rules)) {
-            $request->validate($rules);
-        }
-*/
+    {
         $this->service->store($this->request->all());
 
         return back()->withSuccess('创建' . $this->modname . '成功');
     }
 
-    public function update(Request $request, $id)
+    public function update($id)
     {
         if ($request->isMethod('put')) {
-            $rules = [];
-
-            foreach (config('components.' . $this->model) as $component) {
-                if (!empty($component['edit']) && isset($component['validation'])) {
-                    $rules[$component['field']] = $component['validation'];
-                }
-            }
-        
-            if (!empty($rules)) {
-                $request->validate($rules);
-            }
-            $this->service->update($id, $request->all());
+            $this->service->update($id, $this->request->all());
 
             return back()->withSuccess('更新' . $this->modname . '成功');
         }
     }
 
-    public function delete(Request $request) {
-        $this->service->delete($request->input('items'));
+    public function delete() {
+        $this->service->delete($this->request->input('items'));
 
         return back()->withSuccess('删除' . $this->modname . '成功');
     }

@@ -19,6 +19,11 @@ return [
             'action' => 'change',
             'method' => 'put',
         ],
+        [
+            'url' => 'reset/{id}',
+            'action' => 'reset',
+            'method' => 'put',
+        ],
     ],
     'log' => [
         [

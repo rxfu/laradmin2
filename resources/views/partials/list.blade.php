@@ -49,6 +49,7 @@
 	                                <i class="icon fa fa-edit"></i> 编辑
 	                            </a>
 	                        </td>
+	                        {{ $slot }}
 						</tr>
 					@endforeach
 				</tbody>

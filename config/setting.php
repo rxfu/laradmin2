@@ -8,4 +8,5 @@ return [
     'description' => 'Administration boilerplate using Laravel',
     'author' => 'Fu Rongxin',
     'copyright' => 'Fu Rongxin',
+    'password' => '123456',
 ];
