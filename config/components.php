@@ -55,7 +55,6 @@ return [
             'responsive' => 'all',
             'type' => 'text',
             'required' => true,
-            'validation' => 'required'/* . substr(request()->path(), strrpos(request()->path(), '/') + 1)*/,
         ],
         [
             'field' => 'password',
@@ -63,7 +62,6 @@ return [
             'create' => true,
             'type' => 'password',
             'required' => true,
-            'validation' => 'required|min:6',
             'help' => '密码至少6位',
         ],
         [
@@ -80,7 +78,6 @@ return [
             'create' => true,
             'edit' => true,
             'type' => 'text',
-            'validation' => 'nullable|email',
         ],
         [
             'field' => 'is_enable',
@@ -93,7 +90,6 @@ return [
             'values' => '1:是|0:否',
             'default' => '1',
             'required' => true,
-            'validation' => 'required',
         ],
         [
             'field' => 'is_super',
@@ -106,12 +102,12 @@ return [
             'values' => '1:是|0:否',
             'default' => '0',
             'required' => true,
-            'validation' => 'required',
         ],
         [
             'field' => 'created_at',
             'list' => true,
             'create' => false,
+            'edit' => false,
             'responsive' => 'none',
         ],
     ],

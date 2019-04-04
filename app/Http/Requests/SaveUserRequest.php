@@ -23,12 +23,30 @@ class SaveUserRequest extends FormRequest
      */
     public function rules()
     {
-        if ('POST' == $this->method()) {
-                return [
-                    'username' => 'required|unique:users,username',
-                ];
-        }
+        $rules = [];
 
-            return [];
+        if ($this->isMethod('post') || $this->isMethod('put')) {
+            $rules = [
+                'password' => 'required|min:6',
+                'email' => 'nullable|email',
+                'is_enable' => 'required',
+                'is_super' => 'required',
+            ];
+
+            switch ($this->method()) {
+                case 'post':
+                    $rules['username'] = 'required|unique:users';
+                    break;
+
+                case 'put':
+                    $rules['username'] = 'required|unique:users,username,' . $this->route('id');
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        
+        return $rules;
     }
 }
