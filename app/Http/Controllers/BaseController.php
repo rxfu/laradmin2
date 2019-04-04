@@ -20,7 +20,7 @@ class BaseController extends Controller
         $this->request = $request;
     }
 
-    public function index($action = null, $id = null)
+    public function index($action = null, $id = null, $view = 'index')
     {
         $action = is_null($action) ? 'create' : $action;
         $items = $this->service->getAll();
@@ -29,8 +29,8 @@ class BaseController extends Controller
         if (!is_null($id)) {
             $item = $this->service->get($id);
         }
-
-        return view('pages.index', [
+        
+        return view('pages.' . $view, [
             'modname' => $this->modname,
             'model' => $this->model,
             'action' => $action,
