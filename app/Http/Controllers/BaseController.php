@@ -14,13 +14,15 @@ class BaseController extends Controller
 
     protected $request;
 
+    protected $view = 'common';
+
     public function __construct(Service $service, Request $request)
     {
         $this->service = $service;
         $this->request = $request;
     }
 
-    public function index($action = null, $id = null, $view = 'index')
+    public function index($action = null, $id = null)
     {
         $action = is_null($action) ? 'create' : $action;
         $items = $this->service->getAll();
@@ -30,7 +32,7 @@ class BaseController extends Controller
             $item = $this->service->get($id);
         }
         
-        return view('pages.' . $view, [
+        return view('pages.' . $this->view, [
             'modname' => $this->modname,
             'model' => $this->model,
             'action' => $action,
