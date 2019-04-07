@@ -27,7 +27,7 @@ class SavePermissionRequest extends FormRequest
 
         if ($this->isMethod('post') || $this->isMethod('put')) {
             $rules = [
-                'slug' => 'requried',
+                'slug' => 'required',
                 'name' => 'required',
             ];
         }

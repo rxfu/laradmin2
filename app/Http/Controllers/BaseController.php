@@ -53,6 +53,6 @@ abstract class BaseController extends Controller
     {
         $this->service->delete($request->input('items'));
 
-        return back()->withSuccess('删除' . $this->modname . '成功');
+        return redirect()->route($this->model . '.index')->withSuccess('删除' . $this->modname . '成功');
     }
 }
