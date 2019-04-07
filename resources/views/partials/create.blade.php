@@ -37,6 +37,17 @@
 			                    		<label class="form-check-label" for="{{ $component['field'] . $loop->index }}">{{ $value[1] }}</label>
 			                    	</div>
 				            	@endforeach
+				            @elseif ('datetime' === $component['type'])
+				            	<div class="form-group">
+				            		<div class="input-group date datetimepicker" id="{{ $component['field'] }}" data-target-input="nearest">
+				            			<input type="text" name="{{ $component['field'] }}" class="{{ empty($component['readonly']) ? 'form-control datetimepicker-input' : 'form-control-plaintext' }}{{ $errors->has($component['field']) ? ' is_invalid' : '' }}" placeholder="{{ __($model . '.' . $component['field']) }}" value="{{ old($component['field']) }}"{{ !empty($component['required']) ? ' required' : '' }}{{ !empty($component['readonly']) ? ' readonly' : '' }}{{ !empty($component['disabled']) ? ' readonly' : '' }} data-target="#{{ $component['field'] }}">
+				            			<div class="input-group-append" data-target="#{{ $component['field'] }}" data-toggle="datetimepicker">
+                        					<div class="input-group-text">
+                        						<i class="fa fa-calendar"></i>
+                        					</div>
+                    					</div>
+                    				</div>
+				            	</div>
 			                @endif
 	                    	@if (!empty($component['required']))
 	                    		<span class="text-danger">（*必填项）</span>

@@ -205,14 +205,14 @@ return [
             'list' => true,
             'create' => true,
             'edit' => true,
-            'type' => 'text',
+            'type' => 'datetime',
         ],
         [
             'field' => 'end_at',
             'list' => true,
             'create' => true,
             'edit' => true,
-            'type' => 'text',
+            'type' => 'datetime',
         ],
         [
             'field' => 'is_enable',
