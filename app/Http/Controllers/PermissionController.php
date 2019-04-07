@@ -15,4 +15,14 @@ class PermissionController extends BaseController
         $this->model = 'permission';
         $this->modname = '权限';
     }
+
+    public function store(SavePermissionRequest $request)
+    {
+        return $this->postSave($request);
+    }
+
+    public function update(SavePermissionRequest $request, $id)
+    {
+        return $this->putSave($request, $id);
+    }
 }

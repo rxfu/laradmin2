@@ -14,4 +14,14 @@ class RoleController extends BaseController
         $this->model = 'role';
         $this->modname = '角色';
     }
+
+    public function store(SaveRoleRequest $request)
+    {
+        return $this->postSave($request);
+    }
+
+    public function update(SaveRoleRequest $request, $id)
+    {
+        return $this->putSave($request, $id);
+    }
 }

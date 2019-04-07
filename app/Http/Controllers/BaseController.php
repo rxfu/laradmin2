@@ -5,21 +5,13 @@ namespace App\Http\Controllers;
 use App\Services\Service;
 use Illuminate\Http\Request;
 
-class BaseController extends Controller
+abstract class BaseController extends Controller
 {
     protected $service;
 
     protected $model;
 
     protected $modname;
-
-    protected $request;
-
-    public function __construct(Service $service, Request $request)
-    {
-        $this->service = $service;
-        $this->request = $request;
-    }
 
     public function index($action = null, $id = null)
     {
@@ -41,25 +33,25 @@ class BaseController extends Controller
         ]);
     }
 
-    public function store()
+    public function postSave(Request $request)
     {
-        $this->service->store($this->request->all());
+        $this->service->store($request->all());
 
         return back()->withSuccess('创建' . $this->modname . '成功');
     }
 
-    public function update($id)
+    public function putSave(Request $request, $id)
     {
-        if ($this->request->isMethod('put')) {
-            $this->service->update($id, $this->request->all());
+        if ($request->isMethod('put')) {
+            $this->service->update($id, $request->all());
 
             return back()->withSuccess('更新' . $this->modname . '成功');
         }
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
-        $this->service->delete($this->request->input('items'));
+        $this->service->delete($request->input('items'));
 
         return back()->withSuccess('删除' . $this->modname . '成功');
     }

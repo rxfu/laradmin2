@@ -15,4 +15,14 @@ class SettingController extends BaseController
         $this->model = 'setting';
         $this->modname = '系统设置';
     }
+
+    public function store(SaveSettingRequest $request)
+    {
+        return $this->postSave($request);
+    }
+
+    public function update(SaveSettingRequest $request, $id)
+    {
+        return $this->putSave($request, $id);
+    }
 }
