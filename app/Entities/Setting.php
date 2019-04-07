@@ -3,9 +3,12 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Setting extends Model
 {
+    use PresentableTrait;
+    
     /**
      * The attributes that are mass assignable.
      *

@@ -98,6 +98,28 @@ return [
             'method' => 'delete',
         ],
     ],
+    'department' => [
+        [
+            'url' => '{action?}/{id?}',
+            'action' => 'index',
+            'method' => 'get',
+        ],
+        [
+            'url' => 'store',
+            'action' => 'store',
+            'method' => 'post',
+        ],
+        [
+            'url' => 'update/{id}',
+            'action' => 'update',
+            'method' => 'put',
+        ],
+        [
+            'url' => 'delete',
+            'action' => 'delete',
+            'method' => 'delete',
+        ],
+    ],
     'setting' => [
         [
             'url' => '{action?}/{id?}',

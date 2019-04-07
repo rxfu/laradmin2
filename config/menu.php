@@ -40,6 +40,13 @@ return [
                 'route' => 'permission.index',
             ],
         ],
+        'department' => [
+            'index' => [
+                'title' => '部门管理',
+                'icon' => 'users',
+                'route' => 'department.index',
+            ],
+        ],
         'setting' => [
             'index' => [
                 'title' => '系统设置',

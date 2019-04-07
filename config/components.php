@@ -154,6 +154,35 @@ return [
             'type' => 'textarea',
         ],
     ],
+    'department' => [
+        [
+            'field' => 'name',
+            'list' => true,
+            'create' => true,
+            'edit' => true,
+            'type' => 'text',
+            'required' => true,
+        ],
+        [
+            'field' => 'description',
+            'list' => true,
+            'create' => true,
+            'edit' => true,
+            'type' => 'textarea',
+        ],
+        [
+            'field' => 'is_enable',
+            'list' => true,
+            'create' => true,
+            'edit' => true,
+            'presenter' => true,
+            'responsive' => 'none',
+            'type' => 'radio',
+            'values' => '1:是|0:否',
+            'default' => '1',
+            'required' => true,
+        ],
+    ],
     'setting' => [
         [
             'field' => 'slug',
