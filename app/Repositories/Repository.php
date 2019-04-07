@@ -67,7 +67,7 @@ class Repository
                 return $object;
             }
         } catch (QueryException $e) {
-            throw new InternalException($this->getModel() . ' 对象创建失败', $this->getObject(), 'store', $e);
+            throw new InternalException($this->getModel() . ' 对象创建错误', $this->getObject(), 'store', $e);
         }
     }
 

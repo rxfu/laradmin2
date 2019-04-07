@@ -14,8 +14,6 @@ class BaseController extends Controller
 
     protected $request;
 
-    protected $view = 'common';
-
     public function __construct(Service $service, Request $request)
     {
         $this->service = $service;
@@ -32,7 +30,7 @@ class BaseController extends Controller
             $item = $this->service->get($id);
         }
         
-        return view('pages.' . $this->view, [
+        return view('pages.list', [
             'modname' => $this->modname,
             'model' => $this->model,
             'action' => $action,
@@ -58,7 +56,8 @@ class BaseController extends Controller
         }
     }
 
-    public function delete() {
+    public function delete()
+    {
         $this->service->delete($this->request->input('items'));
 
         return back()->withSuccess('删除' . $this->modname . '成功');

@@ -2,7 +2,7 @@
 
 return [
     'log' => [
-        'grid' => true,
+        'list' => true,
         [
             'field' => 'user_id',
             'list' => true,
@@ -47,6 +47,7 @@ return [
         ],
     ],
     'user' => [
+        'reset' => true,
         [
             'field' => 'username',
             'list' => true,

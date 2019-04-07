@@ -32,6 +32,6 @@ class LogFailedLogin
             'message' => '登录失败',
         ];
 
-        $this->service->write($content, $event->user, 'login', 'warning');
+        // $this->service->write($content, $event->user, 'login', 'warning');
     }
 }

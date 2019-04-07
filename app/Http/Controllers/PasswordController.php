@@ -33,10 +33,8 @@ class PasswordController extends Controller
 
     public function reset(Request $request, $id)
     {
-        if ($request->isMethod('put')) {
-            $this->service->resetPassword($id);
+        $this->service->resetPassword($id);
 
-            return back()->withSuccess('用户 ' . $id . ' 重置密码成功');
-        }
+        return back()->withSuccess('用户 ' . $id . ' 重置密码成功');
     }
 }

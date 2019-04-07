@@ -13,8 +13,6 @@
 							<th scope="col" class="{{ isset($component['responsive']) ? $component['responsive'] : 'desktop' }}">{{ __($model . '.' . $component['field']) }}</th>
 						@endif
 					@endforeach
-
-					@yield('optitle')
 				</tr>
 			</thead>
 			<tbody>
@@ -32,8 +30,6 @@
 								</td>
 							@endif
 						@endforeach
-
-						@yield('operator'. ['item' => $item])
 					</tr>
 				@endforeach
 			</tbody>

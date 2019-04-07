@@ -22,7 +22,7 @@ return [
         [
             'url' => 'reset/{id}',
             'action' => 'reset',
-            'method' => 'put',
+            'method' => 'get',
         ],
     ],
     'log' => [
