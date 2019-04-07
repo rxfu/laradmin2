@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Exceptions\InternalException;
 use App\Exceptions\InvalidRequestException;
-use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 

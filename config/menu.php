@@ -26,6 +26,13 @@ return [
                 'route' => 'user.index',
             ],
         ],
+        'role' => [
+            'index' => [
+                'title' => '角色管理',
+                'icon' => 'users',
+                'route' => 'role.index',
+            ],
+        ],
         'log' => [
             'index' => [
                 'title' => '日志管理',

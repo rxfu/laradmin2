@@ -27,11 +27,7 @@ class Service
 
     public function store($data)
     {
-        try{
         return $this->repository->store($data);
-    } catch (QueryException $e) {
-        dd($e);
-    }
     }
 
     public function update($id, $data)

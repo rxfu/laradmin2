@@ -112,4 +112,21 @@ return [
             'responsive' => 'none',
         ],
     ],
+    'role' => [
+        [
+            'field' => 'name',
+            'list' => true,
+            'create' => true,
+            'edit' => true,
+            'type' => 'text',
+            'required' => true,
+        ],
+        [
+            'field' => 'description',
+            'list' => true,
+            'create' => true,
+            'edit' => true,
+            'type' => 'textarea',
+        ],
+    ],
 ];

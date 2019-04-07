@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'listeners' => [
+    'listeners' => [
         Illuminate\Auth\Events\Login::class => [
             App\Listeners\LogSuccessfulLogin::class,
         ],
@@ -14,9 +14,10 @@ return [
         Illuminate\Auth\Events\Lockout::class => [
             App\Listeners\LogLockout::class,
         ],
-	],
+    ],
 
     'observers' => [
         App\Entities\User::class,
+        App\Entities\Role::class,
     ],
 ];

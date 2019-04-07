@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Service;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
@@ -42,15 +43,15 @@ class BaseController extends Controller
 
     public function store()
     {
-        $this->service->store($this->request->all());
+        $this->service->store($this->request->validated());
 
         return back()->withSuccess('创建' . $this->modname . '成功');
     }
 
     public function update($id)
     {
-        if ($request->isMethod('put')) {
-            $this->service->update($id, $this->request->all());
+        if ($this->request->isMethod('put')) {
+            $this->service->update($id, $this->request->validated());
 
             return back()->withSuccess('更新' . $this->modname . '成功');
         }

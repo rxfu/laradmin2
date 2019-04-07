@@ -22,7 +22,7 @@
 	<div class="alert alert-dismissible alert-danger" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close" aria-hidden="true">&times;</button>
 		<h5>
-			<i class="icon fa fa-ban"></i> 错误!
+			<i class="icon fa fa-ban"></i> 验证错误!
 		</h5>
 		<ul>
 			@foreach ($errors->all() as $error)
