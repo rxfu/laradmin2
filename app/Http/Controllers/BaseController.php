@@ -43,7 +43,7 @@ class BaseController extends Controller
 
     public function store()
     {
-        $this->service->store($this->request->validated());
+        $this->service->store($this->request->all());
 
         return back()->withSuccess('创建' . $this->modname . '成功');
     }
@@ -51,7 +51,7 @@ class BaseController extends Controller
     public function update($id)
     {
         if ($this->request->isMethod('put')) {
-            $this->service->update($id, $this->request->validated());
+            $this->service->update($id, $this->request->all());
 
             return back()->withSuccess('更新' . $this->modname . '成功');
         }
