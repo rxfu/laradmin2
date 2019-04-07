@@ -33,6 +33,20 @@ return [
                 'route' => 'role.index',
             ],
         ],
+        'permission' => [
+            'index' => [
+                'title' => '权限管理',
+                'icon' => 'users',
+                'route' => 'permission.index',
+            ],
+        ],
+        'setting' => [
+            'index' => [
+                'title' => '系统设置',
+                'icon' => 'users',
+                'route' => 'setting.index',
+            ],
+        ],
         'log' => [
             'index' => [
                 'title' => '日志管理',
