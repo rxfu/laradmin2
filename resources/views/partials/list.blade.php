@@ -41,6 +41,7 @@
 <!-- Datatables -->
 <link href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendor/datatables/responsive/css/responsive.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/datepicker/datepicker3.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -49,6 +50,7 @@
 <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/responsive/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendor/datepicker/bootstrap-datepicker.js') }}"></script>
 <script>
 $(function() {
 	$('.datatable').DataTable({
@@ -81,6 +83,11 @@ $(function() {
     $('#allItems').change(function () {
         $(':checkbox[name="items[]"]').prop('checked', $(this).is(':checked') ? true : false);
     });
+
+    $('.datepicker').datepicker({
+	    autoclose: true,
+	    todayHighlight: true
+	});
 })
 </script>
 @endpush
