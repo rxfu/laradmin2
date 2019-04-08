@@ -111,6 +111,16 @@ return [
             'edit' => false,
             'responsive' => 'none',
         ],
+        [
+            'field' => 'department',
+            'list' => true,
+            'create' => true,
+            'edit' => true,
+            'responsive' => 'none',
+            'type' => 'select',
+            'relation' => 'department',
+            'required' => true,
+        ],
     ],
     'role' => [
         [
