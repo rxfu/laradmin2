@@ -38,10 +38,9 @@
 			                    	</div>
 				            	@endforeach
 				            @elseif ('select' === $component['type'])
-				            	@inject('items', $component['field'])
 				            	<select name="{{ $component['field'] }}" id="{{ $component['field'] }}" class="form-control{{ $errors->has($component['field']) ? ' is_invalid' : '' }}"{{ !empty($component['required']) ? ' required' : '' }}{{ !empty($component['readonly']) ? ' readonly' : '' }}{{ !empty($component['disabled']) ? ' readonly' : '' }}>
-				            		@foreach ($items->getAll() as $item)
-				            			<option value="{{ $item->id }}">{{ $item->name }}</option>
+				            		@foreach (${$component['collection']} as $collection)
+				            			<option value="{{ $collection->id }}">{{ $collection->name }}</option>
 				            		@endforeach
 				            	</select>
 				            @elseif ('datetime' === $component['type'])

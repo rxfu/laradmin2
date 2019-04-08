@@ -54,9 +54,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Entities\Role');
     }
 
-    public function department()
+    public function departments()
     {
-        return $this->belongsTo('App\Entities\Department');
+        return $this->belongsToMany('App\Entities\Department', 'user_department')->withTimestamps();
     }
 
     public function logs()

@@ -30,6 +30,6 @@ class Department extends Model
     protected $presenter = 'App\Presenters\DepartmentPresenter';
 
     public function users() {
-    	return $this->hasMany('App\Entities\User');
+    	return $this->belongsToMany('App\Entities\User', 'user_department')->withTimestamps();
     }
 }

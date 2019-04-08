@@ -10,4 +10,13 @@ class DepartmentRepository extends Repository
     {
         $this->object = $department;
     }
+
+    public function getIsEnable($enable = true)
+    {
+    	try{
+	        return $this->object->whereIsEnable($enable)->get();
+	    }  catch (QueryException $e) {
+            throw new InternalException($this->getModel() . ' 对象查询失败', $this->getObject(), 'query', $e);
+        }
+    }
 }

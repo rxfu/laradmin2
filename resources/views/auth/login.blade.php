@@ -17,6 +17,8 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">登录{{ $title ?? '' }}</p>
 
+            @include('shared.alert')
+            
             <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">

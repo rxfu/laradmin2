@@ -38,6 +38,12 @@
 			                    		<label class="form-check-label" for="{{ $component['field'] . $loop->index }}">{{ $value[1] }}</label>
 			                    	</div>
 				            	@endforeach
+				            @elseif ('select' === $component['type'])
+				            	<select name="{{ $component['field'] }}" id="{{ $component['field'] }}" class="form-control{{ $errors->has($component['field']) ? ' is_invalid' : '' }}"{{ !empty($component['required']) ? ' required' : '' }}{{ !empty($component['readonly']) ? ' readonly' : '' }}{{ !empty($component['disabled']) ? ' readonly' : '' }}>
+				            		@foreach (${$component['collection']} as $collection)
+				            			<option value="{{ $collection->id }}"{{ old($component['field'], $item->{$component['field']}) == $collection->id ? ' selected' : '' }}>{{ $collection->name }}</option>
+				            		@endforeach
+				            	</select>
 				            @elseif ('datetime' === $component['type'])
 				            	<div class="form-group">
 				            		<div class="input-group date datetimepicker" id="{{ $component['field'] }}" data-target-input="nearest">
