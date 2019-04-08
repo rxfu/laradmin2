@@ -30,6 +30,8 @@ class SaveSettingRequest extends FormRequest
                 'slug' => 'requird',
                 'name' => 'required',
                 'is_enable' => 'required',
+                'begin_at' => 'nullable|date',
+                'end_at' => 'nullable|date',
             ];
 
             switch ($this->method()) {
@@ -38,7 +40,7 @@ class SaveSettingRequest extends FormRequest
                     break;
 
                 case 'PUT':
-                    $rules['slug'] = 'required|unique:settings,slug,' . $this-route('id');
+                    $rules['slug'] = 'required|unique:settings,slug,' . $this->route('id');
                     break;
 
                 default:

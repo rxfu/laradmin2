@@ -24,10 +24,8 @@ class Setting extends Model
      * @var array
      */
     protected $casts = [
-        'begin_at' => 'datetime',
-        'end_at' => 'datetime',
         'is_enable' => 'boolean',
     ];
 
-    protected $presenter = 'App\Presenters\SettingrPresenter';
+    protected $presenter = 'App\Presenters\SettingPresenter';
 }

@@ -84,6 +84,7 @@
 <!-- Datatables -->
 <link href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendor/datatables/responsive/css/responsive.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/datetimepicker/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -92,6 +93,8 @@
 <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/responsive/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendor/moment/moment-with-locales.min.js') }}"></script>
+<script src="{{ asset('vendor/datetimepicker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <script>
 $(function() {
 	$('.datatable').DataTable({
@@ -124,6 +127,16 @@ $(function() {
     $('#allItems').change(function () {
         $(':checkbox[name="items[]"]').prop('checked', $(this).is(':checked') ? true : false);
     });
+
+    $('.datetimepicker').datetimepicker({
+    	locale: 'zh-cn',
+    	icons: {
+    		time: 'far fa-clock',
+    		date: 'far fa-calendar-alt',
+    		up: 'fas fa-arrow-up',
+    		down: 'fas fa-arrow-down'
+    	}
+	});
 })
 </script>
 @endpush
