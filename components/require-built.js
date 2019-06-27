@@ -35075,7 +35075,7 @@ var widgetsTooltip = $.ui.tooltip;
 define('bootbox', function (require, exports, module) {
 /*! @preserve
  * bootbox.js
- * version: 5.0.0
+ * version: 5.1.1
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -35221,7 +35221,9 @@ define('bootbox', function (require, exports, module) {
     // center modal vertically in page
     centerVertical: false,
     // Append "multiple" property to the select when using the "prompt" helper
-    multiple: false
+    multiple: false,
+    // Automatically scroll modal content when height exceeds viewport height
+    scrollable: false
   };
 
 
@@ -35386,11 +35388,36 @@ define('bootbox', function (require, exports, module) {
         console.warn('"size" requires Bootstrap 3.1.0 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.');
       }
 
-      if (options.size === 'large') {
-        innerDialog.addClass('modal-lg');
-      } else if (options.size === 'small') {
-        innerDialog.addClass('modal-sm');
+      switch(options.size)
+      {
+        case 'small':
+        case 'sm':
+          innerDialog.addClass('modal-sm');
+          break;
+
+        case 'large':
+        case 'lg':
+          innerDialog.addClass('modal-lg');
+          break;
+
+        case 'xl':
+        case 'extra-large':
+          // Requires Bootstrap 4.2.0 or higher
+          if (options.fullBootstrapVersion.substring(0, 3) < '4.2') {
+            console.warn('Using size "xl"/"extra-large" requires Bootstrap 4.2.0 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.');
+          }
+          innerDialog.addClass('modal-xl');
+          break;
       }
+    }
+
+    if(options.scrollable){
+      // Requires Bootstrap 4.3.0 or higher
+      if (options.fullBootstrapVersion.substring(0, 3) < '4.3') {
+        console.warn('Using "scrollable" requires Bootstrap 4.3.0 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.');
+      }
+
+      innerDialog.addClass('modal-dialog-scrollable');
     }
 
     if (options.title) {
@@ -35689,6 +35716,12 @@ define('bootbox', function (require, exports, module) {
 
         if (options.required) {
           input.prop({ 'required': true });
+        }
+        
+        if (options.rows && !isNaN(parseInt(options.rows))) {
+          if(options.inputType === 'textarea'){
+            input.attr({ 'rows': options.rows });
+          }
         }
 
         break;
@@ -36226,12 +36259,13 @@ define('bootbox', function (require, exports, module) {
 }));
 /*! @preserve
  * bootbox.locales.js
- * version: 5.0.0
+ * version: 5.1.1
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
  */
-(function (global, factory) {
+(function (global, factory) {  
+  'use strict';
   if (typeof define === 'function' && define.amd) {
     define(['bootbox'], factory);
   } else if (typeof module === 'object' && module.exports) {
@@ -36240,7 +36274,7 @@ define('bootbox', function (require, exports, module) {
     factory(global.bootbox);
   }
 }(this, function (bootbox) {
-
+  'use strict';
   (function () {
     bootbox.addLocale('ar', {
       OK: 'موافق',
@@ -36502,6 +36536,22 @@ define('bootbox', function (require, exports, module) {
       OK: 'OK',
       CANCEL: 'Avbryt',
       CONFIRM: 'OK'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('sw', {
+      OK: 'Sawa',
+      CANCEL: 'Ghairi',
+      CONFIRM: 'Thibitisha'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('ta', {
+      OK      : 'சரி',
+      CANCEL  : 'ரத்து செய்',
+      CONFIRM : 'உறுதி செய்'
     });
   })();
 
